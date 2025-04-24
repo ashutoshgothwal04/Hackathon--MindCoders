@@ -8,13 +8,6 @@ import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
-// import {
-//   ClerkProvider,
-//   SignInButton,
-//   SignedIn,
-//   SignedOut,
-//   UserButton
-// } from "@clerk/nextjs";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -23,42 +16,8 @@ export const metadata: Metadata = {
   title: "HomeMatch - AI-Powered House Rental Platform",
   description:
     "Find your perfect rental home with AI-powered matching, virtual tours, and secure payments",
-  generator: "v0.dev",
 };
 
-// export default function RootLayout({
-//   children,
-// }: {
-//   children: React.ReactNode;
-// }) {
-//   return (
-//     <ClerkProvider>
-//       <html lang="en" suppressHydrationWarning>
-//         <body className={inter.className}>
-//           <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-//             <div className="flex flex-col min-h-screen">
-//               <Header />
-//               <div className="flex justify-end p-4 gap-4">
-//                 <SignedOut>
-//                   <SignInButton mode="modal" />
-//                 </SignedOut>
-//                 <SignedIn>
-//                   <UserButton afterSignOutUrl="/" />
-//                 </SignedIn>
-//               </div>
-//               <main className="flex-grow">{children}</main>
-//               <Footer />
-//             </div>
-//           </ThemeProvider>
-//         </body>
-//       </html>
-//     </ClerkProvider>
-//   );
-// }
-
-
-
-// Remove everything Clerk-related from layout.tsx
 
 export default function RootLayout({
   children,
