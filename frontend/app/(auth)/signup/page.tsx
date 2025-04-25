@@ -9,7 +9,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { User, Mail, Lock, Home, Building2 } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Sign Up | HomeMatch",
+  title: "Sign Up | NestQuest",
   description: "Create a new account on HomeMatch to find your perfect home or list your property.",
 }
 
