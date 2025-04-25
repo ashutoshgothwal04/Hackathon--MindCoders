@@ -3,18 +3,17 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Home, Sun, Moon } from "lucide-react";
+import { Menu, X, Home, Sun, Moon, LogOut } from "lucide-react";
 import { useTheme } from "next-themes";
-// Removed Clerk imports: import { SignInButton, SignUpButton, UserButton, useUser } from "@clerk/nextjs";
+import { useAuth } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { theme, setTheme } = useTheme();
-  // Removed Clerk hook: const { isSignedIn } = useUser();
-
-  // Placeholder for authentication state - replace with actual logic
-  const isSignedIn = false; // Example: Replace with actual auth check
+  const { isAuthenticated, logout } = useAuth();
+  const router = useRouter();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -24,17 +23,14 @@ export function Header() {
     setTheme(theme === "dark" ? "light" : "dark");
   };
 
-  // Placeholder functions for sign in/out - replace with actual logic
-  // const handleSignIn = () => {
-  //   console.log("Sign In clicked");
-  //   // Add sign-in logic here
-  // };
-
-  // const handleSignOut = () => {
-  //   console.log("Sign Out clicked");
-  //   // Add sign-out logic here
-  // };
-
+  const handleLogout = async () => {
+    try {
+      await logout();
+      router.push("/login");
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,24 +64,34 @@ export function Header() {
               {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </button>
 
-            {/* Display both Sign In and Sign Out buttons */}
-            <Link href="/login">
+            {isAuthenticated ? (
               <Button
                 variant="outline"
+                onClick={handleLogout}
                 className="text-blue-600 border-blue-600 hover:bg-blue-50 dark:text-blue-400 dark:border-blue-400 dark:hover:bg-blue-900/20"
               >
-                Sign In
+                <LogOut className="h-5 w-5 mr-2" />
+                Logout
               </Button>
-            </Link>
-            <Link href="/signup">
-              <Button
-                className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800"
-              >
-                Sign Up
-              </Button>
-            </Link>
-            {/* Note: Removed conditional logic, showing both buttons */}
-
+            ) : (
+              <>
+                <Link href="/login">
+                  <Button
+                    variant="outline"
+                    className="text-blue-600 border-blue-600 hover:bg-blue-50 dark:text-blue-400 dark:border-blue-400 dark:hover:bg-blue-900/20"
+                  >
+                    Sign In
+                  </Button>
+                </Link>
+                <Link href="/signup">
+                  <Button
+                    className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800"
+                  >
+                    Sign Up
+                  </Button>
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -109,26 +115,40 @@ export function Header() {
             <Link href="/virtual-tours" className="block text-gray-700 hover:text-blue-600 py-2 dark:text-gray-300 dark:hover:text-blue-400" onClick={toggleMenu}>Virtual Tours</Link>
             <Link href="/blog" className="block text-gray-700 hover:text-blue-600 py-2 dark:text-gray-300 dark:hover:text-blue-400" onClick={toggleMenu}>Blogs</Link>
 
-            {/* Display both Sign In and Sign Out buttons */}
             <div className="pt-4 flex flex-col space-y-4">
-              <Link href="/login">
+              {isAuthenticated ? (
                 <Button
-                  onClick={() => { toggleMenu(); }}
+                  onClick={() => {
+                    handleLogout();
+                    toggleMenu();
+                  }}
                   variant="outline"
                   className="w-full text-blue-600 border-blue-600 dark:text-blue-400 dark:border-blue-400"
                 >
-                  Sign In
+                  <LogOut className="h-5 w-5 mr-2" />
+                  Logout
                 </Button>
-              </Link>
-              <Link href="/signup">
-                <Button
-                  onClick={() => { toggleMenu(); }}
-                  className="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800"
-                >
-                  Sign Up
-                </Button>
-              </Link>
-              {/* Note: Removed conditional logic, showing both buttons */}
+              ) : (
+                <>
+                  <Link href="/login">
+                    <Button
+                      onClick={() => { toggleMenu(); }}
+                      variant="outline"
+                      className="w-full text-blue-600 border-blue-600 dark:text-blue-400 dark:border-blue-400"
+                    >
+                      Sign In
+                    </Button>
+                  </Link>
+                  <Link href="/signup">
+                    <Button
+                      onClick={() => { toggleMenu(); }}
+                      className="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800"
+                    >
+                      Sign Up
+                    </Button>
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>
