@@ -8,7 +8,6 @@ import {
   getPropertiesBySeller,
 } from "../controllers/property.controllers.js";
 
-
 import { verifyJWT } from "../middlewares/JWT_Verify.js";
 import { upload } from "../middlewares/multer.middleware.js";
 
