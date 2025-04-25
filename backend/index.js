@@ -1,47 +1,3 @@
-// import express from "express";
-// import dotenv from "dotenv";
-// import { connectDB } from "./services/ConnectDB.js";
-// import cookieParser from "cookie-parser";
-// import cors from 'cors'
-
-// //Routes-->
-
-// import userRoutes from "./routes/user.routes.js";
-// import propertyRoutes from "./routes/property.routes.js";
-// import messageRoutes from "./routes/message.routes.js";
-
-
-// dotenv.config();
-// connectDB();
-
-// const app = express();
-
-// app.use(express.json());
-// app.use(cookieParser());
-// app.use(express.urlencoded({ extended: true }));
-// app.use(cors({
-//   origin: 'http://localhost:3000', 
-//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],     
-//   credentials: true                
-// }));
-
-// //Routes-->
-
-// app.use("/api/v1/users", userRoutes);
-// app.use("/api/v1/properties", propertyRoutes);
-// app.use("/api/v1/messages", messageRoutes);
-
-
-// app.get("/", (req, res) => {
-//   res.send("Hello World");
-// });
-
-
-// app.listen(process.env.PORT, () => {
-//   console.log(`Server is running on port ${process.env.PORT}`);
-// });
-
-
 import express from "express";
 import dotenv from "dotenv";
 import { connectDB } from "./services/ConnectDB.js";
@@ -56,7 +12,19 @@ import userRoutes from "./routes/user.routes.js";
 import propertyRoutes from "./routes/property.routes.js";
 import messageRoutes from "./routes/message.routes.js";
 
+// Load environment variables
 dotenv.config();
+
+// Validate required environment variables
+const requiredEnvVars = ['MONGO_URI', 'ACCESS_TOKEN_SECRET', 'REFRESH_TOKEN_SECRET'];
+const missingEnvVars = requiredEnvVars.filter(envVar => !process.env[envVar]);
+
+if (missingEnvVars.length > 0) {
+  console.error('Missing required environment variables:', missingEnvVars);
+  process.exit(1);
+}
+
+// Connect to database
 connectDB();
 
 const app = express();
@@ -65,10 +33,10 @@ const app = express();
 app.use(helmet());
 app.use(
   cors({
-    // origin: process.env.FRONTEND_URL || "http://localhost:3000",
     origin: process.env.FRONTEND_URL || "http://localhost:3000",
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
@@ -78,7 +46,6 @@ const limiter = rateLimit({
   max: 100, // limit each IP to 100 requests per windowMs
 });
 app.use(limiter);
-
 
 // Logger
 app.use(morgan("dev"));
@@ -124,10 +91,10 @@ app.use((err, req, res, next) => {
   });
 });
 
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => {
-  console.log(`Server running in ${process.env.NODE_ENV || "development"} mode on port ${PORT}`);
+// const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
+const server = app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
 
 // Handle unhandled promise rejections
