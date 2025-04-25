@@ -5,7 +5,7 @@ import NewsLetter from "@/components/Blogs/NewsLetter"
 
 export default function BlogPage() {
   return (
-    <div className="container mx-auto px-4 py-16">
+    <div className="container mx-auto px-8 py-16">
       <Header/>
       {/* Featured Post */}
       <Featured/>

@@ -25,15 +25,15 @@ export function Header() {
   };
 
   // Placeholder functions for sign in/out - replace with actual logic
-  const handleSignIn = () => {
-    console.log("Sign In clicked");
-    // Add sign-in logic here
-  };
+  // const handleSignIn = () => {
+  //   console.log("Sign In clicked");
+  //   // Add sign-in logic here
+  // };
 
-  const handleSignOut = () => {
-    console.log("Sign Out clicked");
-    // Add sign-out logic here
-  };
+  // const handleSignOut = () => {
+  //   console.log("Sign Out clicked");
+  //   // Add sign-out logic here
+  // };
 
 
   useEffect(() => {
@@ -69,19 +69,21 @@ export function Header() {
             </button>
 
             {/* Display both Sign In and Sign Out buttons */}
-            <Button
-              onClick={handleSignIn}
-              variant="outline"
-              className="text-blue-600 border-blue-600 hover:bg-blue-50 dark:text-blue-400 dark:border-blue-400 dark:hover:bg-blue-900/20"
-            >
-              Sign In
-            </Button>
-            <Button
-              onClick={handleSignOut}
-              className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800"
-            >
-              Sign Out
-            </Button>
+            <Link href="/login">
+              <Button
+                variant="outline"
+                className="text-blue-600 border-blue-600 hover:bg-blue-50 dark:text-blue-400 dark:border-blue-400 dark:hover:bg-blue-900/20"
+              >
+                Sign In
+              </Button>
+            </Link>
+            <Link href="/signup">
+              <Button
+                className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800"
+              >
+                Sign Up
+              </Button>
+            </Link>
             {/* Note: Removed conditional logic, showing both buttons */}
 
           </div>
@@ -109,19 +111,23 @@ export function Header() {
 
             {/* Display both Sign In and Sign Out buttons */}
             <div className="pt-4 flex flex-col space-y-4">
-              <Button
-                onClick={() => { handleSignIn(); toggleMenu(); }}
-                variant="outline"
-                className="w-full text-blue-600 border-blue-600 dark:text-blue-400 dark:border-blue-400"
-              >
-                Sign In
-              </Button>
-              <Button
-                onClick={() => { handleSignOut(); toggleMenu(); }}
-                className="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800"
-              >
-                Sign Out
-              </Button>
+              <Link href="/login">
+                <Button
+                  onClick={() => { toggleMenu(); }}
+                  variant="outline"
+                  className="w-full text-blue-600 border-blue-600 dark:text-blue-400 dark:border-blue-400"
+                >
+                  Sign In
+                </Button>
+              </Link>
+              <Link href="/signup">
+                <Button
+                  onClick={() => { toggleMenu(); }}
+                  className="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800"
+                >
+                  Sign Up
+                </Button>
+              </Link>
               {/* Note: Removed conditional logic, showing both buttons */}
             </div>
           </div>

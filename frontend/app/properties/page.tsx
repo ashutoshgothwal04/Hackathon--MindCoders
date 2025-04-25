@@ -23,7 +23,7 @@ export default function PropertiesPage() {
     setComparingProperties([])
   }
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-8 py-8">
       {comparingProperties.length > 0 && (
         <div className="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t border-gray-200 z-50 p-4">
           <div className="container mx-auto flex items-center justify-between">
