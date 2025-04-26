@@ -7,7 +7,7 @@ export default function Header() {
     <div>
               {/* Header */}
       <div className="text-center max-w-3xl mx-auto mb-16">
-        <h1 className="text-4xl md:text-5xl font-bold mb-6">HomeMatch Blog</h1>
+        <h1 className="text-4xl md:text-5xl font-bold mb-6">NestQuest Blog</h1>
         <p className="text-xl text-gray-600">
           Insights, tips, and trends to help you navigate the rental market and make your house feel like home
         </p>

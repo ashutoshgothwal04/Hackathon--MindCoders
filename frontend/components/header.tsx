@@ -47,7 +47,7 @@ export function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <Home className="h-8 w-8 text-blue-600 mr-2" />
-            <span className="font-bold text-2xl text-blue-600 dark:text-blue-400">HomeMatch</span>
+            <span className="font-bold text-2xl text-blue-600 dark:text-blue-400">NestQuest</span>
           </Link>
 
           {/* Desktop Navigation */}

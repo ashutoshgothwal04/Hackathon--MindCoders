@@ -10,7 +10,7 @@ export function Footer() {
           <div>
             <div className="flex items-center mb-4">
               <Home className="h-8 w-8 text-blue-400 mr-2" />
-              <span className="font-bold text-2xl">HomeMatch</span>
+              <span className="font-bold text-2xl">NestQuest</span>
             </div>
             <p className="text-gray-400 mb-4 leading-relaxed">
               AI-powered rental platform helping you find your perfect home with smart matching and secure transactions.
@@ -101,8 +101,8 @@ export function Footer() {
             <ul className="space-y-2">
               <li className="flex items-center">
                 <Mail className="h-5 w-5 text-blue-400 mr-3" />
-                <a href="mailto:info@homematch.com" className="text-gray-400 hover:text-white transition-colors">
-                  info@homematch.com
+                <a href="mailto:info@nestquest.com" className="text-gray-400 hover:text-white transition-colors">
+                  info@nestquest.com
                 </a>
               </li>
               <li className="flex items-center">
@@ -116,7 +116,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-gray-800 mt-12 pt-6 text-center text-gray-400">
-          <p>&copy; {new Date().getFullYear()} HomeMatch. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} NestQuest. All rights reserved.</p>
           <div className="mt-3 space-x-4">
             <Link href="/terms" className="hover:text-white transition-colors">
               Terms of Service

@@ -67,7 +67,7 @@ export default function ForLandlordsPage() {
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Benefits for Landlords</h2>
             <p className="text-xl text-gray-600">
-              Discover why thousands of property owners choose HomeMatch to manage their rentals
+              Discover why thousands of property owners choose NestQuest to manage their rentals
             </p>
           </div>
 
@@ -466,7 +466,7 @@ export default function ForLandlordsPage() {
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">What Our Landlords Say</h2>
             <p className="text-xl text-gray-600">
-              Thousands of property owners trust HomeMatch to manage their rental properties
+              Thousands of property owners trust NestQuest to manage their rental properties
             </p>
           </div>
 
@@ -498,7 +498,7 @@ export default function ForLandlordsPage() {
                     ))}
                   </div>
                   <p className="text-gray-700 mb-6 leading-relaxed">
-                    "HomeMatch has transformed how I manage my rental properties. I've reduced vacancy periods by 60%
+                    "NestQuest has transformed how I manage my rental properties. I've reduced vacancy periods by 60%
                     and found higher quality tenants. The digital leasing and rent collection features save me hours
                     every month."
                   </p>
@@ -515,7 +515,7 @@ export default function ForLandlordsPage() {
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">Ready to Maximize Your Rental Income?</h2>
             <p className="text-xl mb-10 text-blue-100">
-              Join thousands of successful landlords who trust HomeMatch to manage their rental properties
+              Join thousands of successful landlords who trust NestQuest to manage their rental properties
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Button size="lg" className="bg-white text-blue-700 hover:bg-blue-50 text-lg px-8 py-6 h-auto">

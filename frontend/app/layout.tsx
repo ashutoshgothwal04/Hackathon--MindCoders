@@ -15,7 +15,7 @@ import { Toaster } from "sonner";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "HomeMatch - AI-Powered House Rental Platform",
+  title: "NestQuest - AI-Powered House Rental Platform",
   description:
     "Find your perfect rental home with AI-powered matching, virtual tours, and secure payments",
 };
