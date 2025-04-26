@@ -60,7 +60,8 @@ const config: Config = {
   				'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
   				border: 'hsl(var(--sidebar-border))',
   				ring: 'hsl(var(--sidebar-ring))'
-  			}
+  			},
+            'bg-color': '#1E201E', // Added custom background color
   		},
   		borderRadius: {
   			lg: 'var(--radius)',

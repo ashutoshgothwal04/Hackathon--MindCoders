@@ -50,7 +50,7 @@ export default function SellerDashboardPage() {
             <div className="flex space-x-4 mt-4 md:mt-0">
               <Button className="bg-blue-600 hover:bg-blue-700 rounded-xl flex items-center">
                 <Plus className="h-5 w-5 mr-2" />
-                <Link href="/seller/add-listing">Add New Property</Link>
+                <Link href="/seller/dashboard/add-listing">Add New Property</Link>
               </Button>
               <Button 
                 variant="outline" 
@@ -266,7 +266,7 @@ export default function SellerDashboardPage() {
                       Sort
                     </Button>
                     <Button size="sm" className="bg-blue-600 hover:bg-blue-700 rounded-xl">
-                      <Link href="/seller/add-listing">Add New</Link>
+                      <Link href="/seller/dashboard/add-listing">Add New</Link>
                     </Button>
                   </div>
                 </div>
