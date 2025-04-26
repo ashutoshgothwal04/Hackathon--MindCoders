@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Home, Sun, Moon, LogOut, User } from "lucide-react"; // User icon is already imported
+import { Menu, X, Home, Sun, Moon, LogOut, User, LayoutDashboard } from "lucide-react"; // Added LayoutDashboard
 import { useTheme } from "next-themes";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
@@ -123,6 +123,22 @@ export function Header() {
                       <p className="text-xs text-muted-foreground">{user?.email}</p>
                     </div>
                   </div>
+                  {/* Dashboard Links */}
+                  <div className="space-y-1 mb-4"> {/* Container for links */}
+                    <Link href="/dashboard" passHref>
+                      <Button variant="ghost" className="w-full justify-start px-2 py-1.5 text-sm">
+                        <LayoutDashboard className="h-4 w-4 mr-2" />
+                        Dashboard
+                      </Button>
+                    </Link>
+                    <Link href="/seller/dashboard" passHref>
+                      <Button variant="ghost" className="w-full justify-start px-2 py-1.5 text-sm">
+                        <Home className="h-4 w-4 mr-2" /> {/* Using Home icon for seller dashboard */}
+                        Seller Dashboard
+                      </Button>
+                    </Link>
+                  </div>
+                  {/* Logout Button */}
                   <Button
                     variant="outline"
                     onClick={handleLogout}
@@ -194,6 +210,19 @@ export function Header() {
                       <p className="text-xs text-muted-foreground">{user?.email}</p>
                     </div>
                   </div>
+                   {/* Mobile Dashboard Links */}
+                   <Link href="/dashboard" passHref>
+                      <Button variant="ghost" className="w-full justify-start" onClick={toggleMenu}>
+                        <LayoutDashboard className="h-4 w-4 mr-2" />
+                        Dashboard
+                      </Button>
+                    </Link>
+                    <Link href="/seller/dashboard" passHref>
+                      <Button variant="ghost" className="w-full justify-start" onClick={toggleMenu}>
+                        <Home className="h-4 w-4 mr-2" />
+                        Seller Dashboard
+                      </Button>
+                    </Link>
                   <Button
                     onClick={handleLogout} // handleLogout already closes the menu
                     variant="outline"
