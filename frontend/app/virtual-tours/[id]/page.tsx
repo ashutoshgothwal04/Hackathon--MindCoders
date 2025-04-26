@@ -173,7 +173,7 @@ export default function VirtualTourPage({ params }: VirtualTourPageProps) {
                 <h3 className="text-xl font-semibold mb-3">Location</h3>
                 <div className="w-full h-full rounded-lg overflow-hidden">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d241317.91599097935!2d72.72323473306437!3d19.15977857284976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c6306644edc1%3A0x5da4ed8f8d648c69!2sMumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1688249452978!5m2!1sen!2sin"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14722.80081181188!2d75.8669168871582!3d22.701888900000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962fd1394000001%3A0x71a9d5361a194e38!2sBhawar%20Kuan%2C%20Indore%2C%20Madhya%20Pradesh!5e0!3m2!1sen!2sin!4v1719568583101!5m2!1sen!2sin"
                     width="100%"
                     height="450"
                     style={{ border: 0 }}
