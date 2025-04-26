@@ -1,4 +1,5 @@
-import type { Metadata } from "next"
+"use client"
+
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -7,13 +8,43 @@ import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Checkbox } from "@/components/ui/checkbox"
 import { User, Mail, Lock, Home, Building2 } from "lucide-react"
-
-export const metadata: Metadata = {
-  title: "Sign Up | HomeMatch",
-  description: "Create a new account on HomeMatch to find your perfect home or list your property.",
-}
+import { useAuth } from "@/context/AuthContext"
+import { useState } from "react"
+import { toast } from "sonner"
 
 export default function SignUpPage() {
+  const { register } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    username: "",
+    password: "",
+    phone: "",
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      await register(formData);
+      toast.success("Account created successfully");
+    } catch (error: any) {
+      toast.error(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
   return (
     <div className="container mx-auto flex items-center justify-center min-h-[calc(100vh-10rem)] px-4 py-8">
       <div className="w-full max-w-md">
@@ -36,18 +67,33 @@ export default function SignUpPage() {
               </TabsList>
 
               <TabsContent value="renter" className="space-y-4">
-                <form action="#" className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="first-name">First name</Label>
+                      <Label htmlFor="fullName">Full name</Label>
                       <div className="relative">
                         <User className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                        <Input id="first-name" placeholder="John" className="pl-10" required />
+                        <Input
+                          id="fullName"
+                          name="fullName"
+                          placeholder="John Doe"
+                          className="pl-10"
+                          required
+                          value={formData.fullName}
+                          onChange={handleChange}
+                        />
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="last-name">Last name</Label>
-                      <Input id="last-name" placeholder="Doe" required />
+                      <Label htmlFor="username">Username</Label>
+                      <Input
+                        id="username"
+                        name="username"
+                        placeholder="johndoe"
+                        required
+                        value={formData.username}
+                        onChange={handleChange}
+                      />
                     </div>
                   </div>
 
@@ -55,15 +101,46 @@ export default function SignUpPage() {
                     <Label htmlFor="email">Email</Label>
                     <div className="relative">
                       <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                      <Input id="email" placeholder="name@example.com" type="email" className="pl-10" required />
+                      <Input
+                        id="email"
+                        name="email"
+                        placeholder="name@example.com"
+                        type="email"
+                        className="pl-10"
+                        required
+                        value={formData.email}
+                        onChange={handleChange}
+                      />
                     </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="phone">Phone</Label>
+                    <Input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      placeholder="+1234567890"
+                      required
+                      value={formData.phone}
+                      onChange={handleChange}
+                    />
                   </div>
 
                   <div className="space-y-2">
                     <Label htmlFor="password">Password</Label>
                     <div className="relative">
                       <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                      <Input id="password" type="password" placeholder="••••••••" className="pl-10" required />
+                      <Input
+                        id="password"
+                        name="password"
+                        type="password"
+                        placeholder="••••••••"
+                        className="pl-10"
+                        required
+                        value={formData.password}
+                        onChange={handleChange}
+                      />
                     </div>
                     <p className="text-xs text-gray-500">
                       Password must be at least 8 characters long with a number and a special character
@@ -84,61 +161,96 @@ export default function SignUpPage() {
                     </Label>
                   </div>
 
-                  <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700">
-                    Create account
+                  <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700" disabled={isLoading}>
+                    {isLoading ? "Creating account..." : "Create account"}
                   </Button>
                 </form>
               </TabsContent>
 
               <TabsContent value="landlord" className="space-y-4">
-                <form action="#" className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="first-name-landlord">First name</Label>
+                      <Label htmlFor="fullName">Full name</Label>
                       <div className="relative">
                         <User className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                        <Input id="first-name-landlord" placeholder="John" className="pl-10" required />
+                        <Input
+                          id="fullName"
+                          name="fullName"
+                          placeholder="John Doe"
+                          className="pl-10"
+                          required
+                          value={formData.fullName}
+                          onChange={handleChange}
+                        />
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="last-name-landlord">Last name</Label>
-                      <Input id="last-name-landlord" placeholder="Doe" required />
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="email-landlord">Email</Label>
-                    <div className="relative">
-                      <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                      <Label htmlFor="username">Username</Label>
                       <Input
-                        id="email-landlord"
-                        placeholder="name@example.com"
-                        type="email"
-                        className="pl-10"
+                        id="username"
+                        name="username"
+                        placeholder="johndoe"
                         required
+                        value={formData.username}
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="password-landlord">Password</Label>
+                    <Label htmlFor="email">Email</Label>
+                    <div className="relative">
+                      <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                      <Input
+                        id="email"
+                        name="email"
+                        placeholder="name@example.com"
+                        type="email"
+                        className="pl-10"
+                        required
+                        value={formData.email}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="phone">Phone</Label>
+                    <Input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      placeholder="+1234567890"
+                      required
+                      value={formData.phone}
+                      onChange={handleChange}
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="password">Password</Label>
                     <div className="relative">
                       <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                      <Input id="password-landlord" type="password" placeholder="••••••••" className="pl-10" required />
+                      <Input
+                        id="password"
+                        name="password"
+                        type="password"
+                        placeholder="••••••••"
+                        className="pl-10"
+                        required
+                        value={formData.password}
+                        onChange={handleChange}
+                      />
                     </div>
                     <p className="text-xs text-gray-500">
                       Password must be at least 8 characters long with a number and a special character
                     </p>
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="property-count">Number of properties</Label>
-                    <Input id="property-count" type="number" min="1" placeholder="1" required />
-                  </div>
-
                   <div className="flex items-center space-x-2">
-                    <Checkbox id="terms-landlord" required />
-                    <Label htmlFor="terms-landlord" className="text-sm font-normal">
+                    <Checkbox id="terms" required />
+                    <Label htmlFor="terms" className="text-sm font-normal">
                       I agree to the{" "}
                       <Link href="/terms" className="text-blue-600 hover:underline">
                         Terms of Service
@@ -150,8 +262,8 @@ export default function SignUpPage() {
                     </Label>
                   </div>
 
-                  <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700">
-                    Create account
+                  <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700" disabled={isLoading}>
+                    {isLoading ? "Creating account..." : "Create account"}
                   </Button>
                 </form>
               </TabsContent>

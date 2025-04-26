@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -13,11 +15,26 @@ import {
   Calendar,
   Eye,
   Star,
+  LogOut,
 } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import { useAuth } from "@/context/AuthContext"
+import { useRouter } from "next/navigation"
 
 export default function SellerDashboardPage() {
+  const { logout } = useAuth();
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      router.push("/login");
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
+
   return (
     <div className="flex min-h-screen bg-gray-50">
       {/* Sidebar */}
@@ -30,10 +47,18 @@ export default function SellerDashboardPage() {
               <h1 className="text-3xl font-bold mb-2">Welcome back, Michael</h1>
               <p className="text-gray-600">Manage your properties and connect with potential tenants</p>
             </div>
-            <div className="mt-4 md:mt-0">
+            <div className="flex space-x-4 mt-4 md:mt-0">
               <Button className="bg-blue-600 hover:bg-blue-700 rounded-xl flex items-center">
                 <Plus className="h-5 w-5 mr-2" />
                 <Link href="/seller/add-listing">Add New Property</Link>
+              </Button>
+              <Button 
+                variant="outline" 
+                className="rounded-xl text-red-600 border-red-600 hover:bg-red-50"
+                onClick={handleLogout}
+              >
+                <LogOut className="h-5 w-5 mr-2" />
+                Logout
               </Button>
             </div>
           </div>
