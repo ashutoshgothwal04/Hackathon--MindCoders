@@ -10,7 +10,7 @@
 | ---------------- | ------------------ |
 | Anamika Saini    | Team Leader        |
 | Adarsh Sharma    | Backend Developer |
-| Ashutosh Gothwal | All Developer      |
+| Ashutosh Gothwal | Full Stack Developer      |
 | Rishi Tiwari     | Frontend Developer |
 
 ## 🚀 Project Overview
