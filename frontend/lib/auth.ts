@@ -59,7 +59,7 @@ export const logout = async (): Promise<AuthResponse> => {
   } catch (error: any) {
     throw new Error(error.response?.data?.msg || 'Logout failed');
   }
-};
+};6
 
 export const refreshToken = async (): Promise<AuthResponse> => {
   try {

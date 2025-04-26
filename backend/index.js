@@ -11,6 +11,7 @@ import morgan from "morgan";
 import userRoutes from "./routes/user.routes.js";
 import propertyRoutes from "./routes/property.routes.js";
 import messageRoutes from "./routes/message.routes.js";
+import { verifyJWT } from "./middlewares/JWT_Verify.js";
 
 // Load environment variables
 dotenv.config();
@@ -60,8 +61,8 @@ app.use(express.urlencoded({ extended: true, limit: "10kb" }));
 
 // Routes
 app.use("/api/v1/users", userRoutes);
-app.use("/api/v1/properties", propertyRoutes);
-app.use("/api/v1/messages", messageRoutes);
+app.use("/api/v1/properties", verifyJWT, propertyRoutes );
+app.use("/api/v1/messages", verifyJWT,  messageRoutes);
 
 // Health Check
 app.get("/api/health", (req, res) => {
