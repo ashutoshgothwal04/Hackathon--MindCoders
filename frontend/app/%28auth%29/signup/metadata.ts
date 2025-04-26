@@ -1,1 +1,0 @@
-description: "Create a new account on NestQuest to find your perfect home or list your property.", 
