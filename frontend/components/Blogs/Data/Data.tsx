@@ -74,10 +74,8 @@ export  const blogPosts = [
 export  const categories = [
     "All Categories",
     "Rental Tips",
-    "Technology",
     "Legal",
     "Neighborhoods",
-    "Interior Design",
     "Lifestyle",
     "Market Trends",
   ]

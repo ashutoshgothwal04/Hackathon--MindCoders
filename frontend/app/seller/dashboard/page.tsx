@@ -1,3 +1,5 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -21,7 +23,7 @@ import { useAuth } from "@/context/AuthContext"
 import { useRouter } from "next/navigation"
 
 export default function SellerDashboardPage() {
-  const { logout } = useAuth();
+  const { logout ,user } = useAuth();
   const router = useRouter();
 
   const handleLogout = async () => {
@@ -42,7 +44,7 @@ export default function SellerDashboardPage() {
           {/* Header */}
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
             <div>
-              <h1 className="text-3xl font-bold mb-2">Welcome back, Michael</h1>
+              <h1 className="text-3xl font-bold mb-2">Welcome.</h1>
               <p className="text-gray-600">Manage your properties and connect with potential tenants</p>
             </div>
             <div className="flex space-x-4 mt-4 md:mt-0">
