@@ -274,7 +274,7 @@ export default function VirtualTourPage({ params }: VirtualTourPageProps) {
                 </div>
                 <div>
                   <h3 className="font-medium">{tour.agent.name}</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">All Developer</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400"> Developer</p>
                 </div>
               </div>
 
