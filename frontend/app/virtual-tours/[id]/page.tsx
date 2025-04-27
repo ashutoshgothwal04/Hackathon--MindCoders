@@ -65,7 +65,7 @@ export default function VirtualTourPage({ params }: VirtualTourPageProps) {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
             <h1 className="text-3xl font-bold">{tour.title}</h1>
-            <div className="flex items-center text-gray-600 mt-1">
+            <div className="flex items-center text-gray-600 dark:text-gray-400 mt-1">
               <MapPin className="h-4 w-4 mr-1" />
               <span>{tour.address}</span>
             </div>
@@ -79,7 +79,7 @@ export default function VirtualTourPage({ params }: VirtualTourPageProps) {
               <Share2 className="h-4 w-4" />
               Share
             </Button>
-            <Button size="sm" className="bg-blue-600 hover:bg-blue-700">
+            <Button size="sm" className="bg-blue-600 dark:text-white hover:bg-blue-700">
               Schedule Tour
             </Button>
           </div>
@@ -105,7 +105,7 @@ export default function VirtualTourPage({ params }: VirtualTourPageProps) {
           />
           <div className="absolute top-4 right-4 flex gap-2">
             {tour.tourTypes.map((type) => (
-              <Badge key={type} className="bg-blue-600">
+              <Badge key={type} className="bg-blue-600 dark:text-white">
                 {type}
               </Badge>
             ))}
@@ -128,7 +128,7 @@ export default function VirtualTourPage({ params }: VirtualTourPageProps) {
           />
           <div className="absolute top-4 right-4 flex gap-2">
             {tour.tourTypes.map((type) => (
-              <Badge key={type} className="bg-blue-600">
+              <Badge key={type} className="bg-blue-600 dark:text-white">
                 {type}
               </Badge>
             ))}
@@ -166,7 +166,7 @@ export default function VirtualTourPage({ params }: VirtualTourPageProps) {
                     <span className="text-sm text-gray-500">Sq Ft</span>
                   </div>
                 </div>
-                <p className="text-gray-700">{tour.description}</p>
+                <p className="text-gray-700 dark:text-gray-400">{tour.description}</p>
               </div>
 
               <div>
@@ -205,12 +205,12 @@ export default function VirtualTourPage({ params }: VirtualTourPageProps) {
               <h2 className="text-2xl font-semibold mb-4">Available Tour Options</h2>
               <div className="space-y-6">
                 {tour.tourTypes.includes("VR") && (
-                  <div className="bg-white p-6 rounded-lg border">
+                  <div className="bg-white dark:bg-bg-color p-6 rounded-lg border">
                     <h3 className="text-xl font-medium mb-2 flex items-center">
-                      <Badge className="mr-2 bg-blue-600">VR</Badge>
+                      <Badge className="mr-2 dark:text-white bg-blue-600">VR</Badge>
                       Virtual Reality Tour
                     </h3>
-                    <p className="text-gray-700 mb-4">
+                    <p className="text-gray-700  dark:text-gray-400 mb-4">
                       Experience this property in full immersion with our VR tour. Compatible with Oculus, HTC Vive, and
                       other VR headsets.
                     </p>
@@ -219,16 +219,16 @@ export default function VirtualTourPage({ params }: VirtualTourPageProps) {
                 )}
 
                 {tour.tourTypes.includes("3D Walkthrough") && (
-                  <div className="bg-white p-6 rounded-lg border">
+                  <div className="bg-white dark:bg-bg-color p-6 rounded-lg border">
                     <h3 className="text-xl font-medium mb-2 flex items-center">
                       <Badge className="mr-2 bg-blue-600">3D</Badge>
                       3D Walkthrough
                     </h3>
-                    <p className="text-gray-700 mb-4">
+                    <p className="text-gray-700  dark:text-gray-400 mb-4">
                       Navigate through the property in 3D on any device. Explore each room and get a feel for the
                       layout.
                     </p>
-                    <Button className="bg-blue-600 hover:bg-blue-700">Start 3D Walkthrough</Button>
+                    <Button className="bg-blue-600 dark:text-white hover:bg-blue-700">Start 3D Walkthrough</Button>
                   </div>
                 )}
 
@@ -336,13 +336,13 @@ export default function VirtualTourPage({ params }: VirtualTourPageProps) {
                 <CardContent className="p-4">
                   <div className="flex justify-between items-center mb-2">
                     <span className="font-bold text-lg">${1800 + i * 500}/mo</span>
-                    <div className="flex text-sm text-gray-500">
+                    <div className="flex text-sm dark:text-gray-400 text-gray-500">
                       <span className="mr-2">{i + 1} beds</span>
                       <span>{i + 1} baths</span>
                     </div>
                   </div>
                   <h3 className="font-semibold mb-1">Modern Apartment {i}</h3>
-                  <p className="text-gray-600 text-sm mb-4">Downtown, New York</p>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">Downtown, New York</p>
                   <Link href={`/virtual-tours/${i}`}>
                     <Button className="w-full bg-blue-600 hover:bg-blue-700">View Virtual Tour</Button>
                   </Link>

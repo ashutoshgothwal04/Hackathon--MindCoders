@@ -3,7 +3,7 @@ import { Button } from "../ui/button";
 
 export default function CTA() {
   return (
-    <section className="py-24 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
+    <section className="py-24 dark:bg-bg-prime bg-blue-600 text-white">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">

@@ -65,13 +65,13 @@ export function AIFeatures() {
       {features.map((feature, index) => (
         <div
           key={index}
-          className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-all hover:translate-y-[-5px] duration-300"
+          className="bg-white dark:bg-bg-color p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-bg-color hover:shadow-md transition-all hover:translate-y-[-5px] duration-300"
         >
           <div className={`${feature.color} p-4 rounded-2xl w-16 h-16 flex items-center justify-center mb-6`}>
             <feature.icon className="h-8 w-8" />
           </div>
           <h3 className="font-semibold text-xl mb-3">{feature.title}</h3>
-          <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+          <p className="text-gray-600 dark:text-gray-400 leading-relaxed">{feature.description}</p>
         </div>
       ))}
     </div>

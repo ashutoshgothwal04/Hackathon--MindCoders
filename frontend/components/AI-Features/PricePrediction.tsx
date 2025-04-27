@@ -19,12 +19,12 @@ const PricePredictionCard = ({
   icon: React.ReactNode;
   children: React.ReactNode;
 }) => (
-  <div className="bg-white rounded-lg shadow-md p-6">
+  <div className="bg-white dark:bg-bg-color rounded-lg shadow-md p-6">
     <div className="flex items-center mb-6">
       <div className="p-3 rounded-full mr-4">{icon}</div>
       <h3 className="text-xl font-semibold">{title}</h3>
     </div>
-    <p className="text-gray-700 mb-6">{description}</p>
+    <p className="text-gray-700 dark:text-gray-400 mb-6">{description}</p>
     {children}
   </div>
 );
@@ -74,12 +74,12 @@ export default function PricePrediction() {
         >
           <div className="space-y-4 mb-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Property Address</label>
+              <label className="block text-sm font-medium dark:text-gray-400 text-gray-700 mb-1">Property Address</label>
               <input type="text" className="w-full p-2 border rounded-md" placeholder="Enter address" />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Bedrooms</label>
+                <label className="block text-sm font-medium dark:text-gray-400 text-gray-700 mb-1">Bedrooms</label>
                 <select className="w-full p-2 border rounded-md">
                   <option>1</option>
                   <option>2</option>
@@ -88,7 +88,7 @@ export default function PricePrediction() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Bathrooms</label>
+                <label className="block text-sm font-medium dark:text-gray-400 text-gray-700 mb-1">Bathrooms</label>
                 <select className="w-full p-2 border rounded-md">
                   <option>1</option>
                   <option>1.5</option>

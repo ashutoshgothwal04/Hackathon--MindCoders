@@ -75,7 +75,7 @@ export function PropertyCard({ property, onCompareToggle, isComparing }: Propert
         {/* AI Match Badge */}
         {property.isAIMatch && (
           <div className="absolute bottom-4 left-4 z-10">
-            <Badge className="bg-blue-600 hover:bg-blue-700 text-xs py-0.5 px-2 rounded-full">
+            <Badge className="bg-blue-600 hover:bg-blue-700 dark:text-white text-xs py-0.5 px-2 rounded-full">
               {property.matchPercentage}% Match
             </Badge>
           </div>
@@ -84,7 +84,7 @@ export function PropertyCard({ property, onCompareToggle, isComparing }: Propert
         {/* Verified Badge */}
         {property.isVerified && (
           <div className="absolute bottom-4 right-4 z-10">
-            <Badge variant="outline" className="bg-white text-xs py-0.5 px-2 rounded-full border border-gray-200">
+            <Badge variant="outline" className="bg-white text-xs dark:text-black py-0.5 px-2 rounded-full border border-gray-200">
               <Star className="h-3 w-3 text-yellow-500 mr-1" fill="currentColor" />
               Verified
             </Badge>
@@ -92,7 +92,7 @@ export function PropertyCard({ property, onCompareToggle, isComparing }: Propert
         )}
       </div>
 
-      <CardContent className="p-6">
+      <CardContent className="p-6 dark:bg-bg-color">
         {/* Price */}
         <div className="flex justify-between items-center mb-3">
           <p className="text-xl font-bold text-blue-600">${property.price.toLocaleString()}/mo</p>
@@ -104,7 +104,7 @@ export function PropertyCard({ property, onCompareToggle, isComparing }: Propert
 
         {/* Title */}
         <Link href={`/properties/${property.id}`} passHref>
-           <h3 className="text-xl font-semibold mb-2 hover:text-blue-600 transition-colors cursor-pointer line-clamp-2" title={property.title}>
+           <h3 className="text-xl font-semibold mb-2 transition-colors cursor-pointer line-clamp-2" title={property.title}>
              {property.title}
            </h3>
         </Link>
@@ -116,7 +116,7 @@ export function PropertyCard({ property, onCompareToggle, isComparing }: Propert
         </div>
 
         {/* Features */}
-        <div className="flex justify-between text-sm text-gray-600 mb-6">
+        <div className="flex justify-between text-sm dark:text-gray-400 text-gray-600 mb-6">
           <div className="flex items-center">
             <Bed className="h-4 w-4 mr-1 text-blue-500" />
             <span>{property.bedrooms} Beds</span>
@@ -126,19 +126,19 @@ export function PropertyCard({ property, onCompareToggle, isComparing }: Propert
             <span>{property.bathrooms} Baths</span>
           </div>
           <div className="flex items-center">
-            <Square className="h-4 w-4 mr-1 text-blue-500" />
+            <Square className="h-4 w-4 mr-1  text-blue-500" />
             <span>{property.area} sq ft</span>
           </div>
         </div>
         <div className="flex gap-2">
-           <Button asChild className="w-full bg-blue-600 hover:bg-blue-700 rounded-xl h-12">
+           <Button asChild className="w-full bg-blue-600 hover:bg-blue-700 dark:text-white rounded-xl h-12">
              <Link href={`/properties/${property.id}`} className="w-full">
                View Details
              </Link>
            </Button>
           <Button
             variant={isComparing ? "destructive" : "outline"} // Use destructive variant for remove
-            className={`w-full rounded-xl h-12 transition-colors ${
+            className={`w-full rounded-xl h-12 dark:hover:text-black transition-colors ${
               isComparing ? 'bg-red-500 hover:bg-red-600 text-white border-red-500 hover:border-red-600' : 'border-gray-300 hover:bg-gray-50'
             }`}
             onClick={() => onCompareToggle(property.id, !isComparing)}

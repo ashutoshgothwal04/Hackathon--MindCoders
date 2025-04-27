@@ -27,16 +27,16 @@ export default function Featured() {
               VR Ready
             </div>
           </div>
-          <CardContent className="p-4">
+          <CardContent className="p-4 ">
             <div className="flex justify-between items-center mb-4">
               <span className="font-bold text-lg">$2,500/mo</span>
-              <div className="flex text-sm text-gray-500">
+              <div className="flex text-sm dark:text-gray-400 text-gray-500">
                 <span className="mr-2">2 beds</span>
                 <span>2 baths</span>
               </div>
             </div>
             <Link href={`/virtual-tours/${i}`}>
-              <Button className="w-full bg-blue-600 hover:bg-blue-700">Start Virtual Tour</Button>
+              <Button className="w-full bg-blue-600 dark:text-white hover:bg-blue-700">Start Virtual Tour</Button>
             </Link>
           </CardContent>
         </Card>

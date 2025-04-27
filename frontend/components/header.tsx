@@ -74,7 +74,7 @@ export function Header() {
   }, []);
 
   return (
-    <header className={`sticky top-0 z-50 transition-shadow duration-200 ${isScrolled ? 'shadow-md' : 'shadow-sm'} bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60`}>
+    <header className={`sticky top-0 z-50 transition-shadow bg-white/90 dark:bg-bg-prime/90 duration-200 ${isScrolled ? 'shadow-md' : 'shadow-sm'} `}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8"> {/* Adjusted padding */}
         <div className="flex items-center justify-between h-16 md:h-20"> {/* Adjusted height */}
           {/* Logo */}
@@ -95,7 +95,7 @@ export function Header() {
           <div className="hidden md:flex items-center gap-3">
             <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label="Toggle theme">
               <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-              <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+              <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 dark:text-white" />
             </Button>
 
             {isAuthenticated ? (
@@ -105,7 +105,7 @@ export function Header() {
                     <Avatar className="h-8 w-8">
                       {/* <AvatarImage src={user?.avatar} alt={user?.username || "User"} /> */}
                       <AvatarFallback>
-                        <User className="h-5 w-5" /> {/* Use User icon */}
+                        <User className="h-5 w-5 dark:text-white" /> {/* Use User icon */}
                       </AvatarFallback>
                     </Avatar>
                   </Button>
@@ -115,7 +115,7 @@ export function Header() {
                     <Avatar className="h-10 w-10">
                        {/* <AvatarImage src={user?.avatar} alt={user?.username || "User"} /> */}
                        <AvatarFallback>
-                         <User className="h-6 w-6" /> {/* Use User icon */}
+                         <User className="h-6 w-6 dark:text-white" /> {/* Use User icon */}
                        </AvatarFallback>
                     </Avatar>
                     <div>
@@ -164,7 +164,7 @@ export function Header() {
                 <Link href="/signup">
                   <Button
                     size="sm"
-                    className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800"
+                    className="bg-blue-600 hover:bg-blue-700 dark:text-white dark:bg-blue-700 dark:hover:bg-blue-800"
                   >
                     Sign Up
                   </Button>
@@ -177,10 +177,10 @@ export function Header() {
           <div className="md:hidden flex items-center gap-2">
              <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label="Toggle theme">
               <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-              <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+              <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 dark:text-white" />
             </Button>
             <Button variant="ghost" size="icon" onClick={toggleMenu} aria-label="Toggle menu">
-              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isMenuOpen ? <X className="h-6 w-6 dark:text-white" /> : <Menu className="h-6 w-6 dark:text-white" />}
             </Button>
           </div>
         </div>
@@ -202,7 +202,7 @@ export function Header() {
                      <Avatar className="h-10 w-10">
                        {/* <AvatarImage src={user?.avatar} alt={user?.username || "User"} /> */}
                        <AvatarFallback>
-                         <User className="h-6 w-6" /> {/* Use User icon */}
+                         <User className="h-6 w-6 dark:text-white" /> {/* Use User icon */}
                        </AvatarFallback>
                     </Avatar>
                     <div>

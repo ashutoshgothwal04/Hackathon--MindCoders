@@ -3,7 +3,7 @@ import { FeaturedProperties } from "../featured-properties";
 
 export default function Featured() {
   return (
-    <section className="py-24 bg-gray-50">
+    <section className="py-24 dark:bg-bg-prime bg-gray-50">
     <div className="container mx-auto px-8">
       <div className="flex justify-between items-end mb-12">
         <div>

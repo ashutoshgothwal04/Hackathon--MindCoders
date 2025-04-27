@@ -43,7 +43,7 @@ export function HowItWorks() {
             )}
 
             <h3 className="text-2xl font-semibold mb-4">{step.title}</h3>
-            <p className="text-gray-600 leading-relaxed">{step.description}</p>
+            <p className="text-gray-600 dark:text-gray-400 leading-relaxed">{step.description}</p>
           </div>
         ))}
       </div>

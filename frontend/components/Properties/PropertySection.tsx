@@ -265,7 +265,7 @@ export default function PropertySection({handleCompareToggle, comparingPropertie
         <p className="text-gray-500">Based on your search criteria</p>
       </div>
       <div className="flex items-center mt-4 sm:mt-0">
-        <span className="text-sm text-gray-600 mr-2">Sort by:</span>
+        <span className="text-sm text-gray-600 dark:text-gray-400 mr-2">Sort by:</span>
         {/* TODO: Implement sorting logic and potentially sync sort state with URL params too */}
         <Select defaultValue="recommended">
           <SelectTrigger className="w-[180px]">

@@ -16,7 +16,7 @@ export default function Overview() {
             className="overflow-hidden hover:shadow-lg transition-shadow"
           >
             <div className={`bg-${feature.iconColor}-600 h-2`}></div>
-            <CardContent className="p-6 flex flex-col h-full">
+            <CardContent className="p-6 dark:bg-bg-color flex flex-col h-full">
               <div className="flex flex-col justify-between h-full">
                 <div>
                   <div
@@ -27,7 +27,7 @@ export default function Overview() {
                     />
                   </div>
                   <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-gray-600 mb-4">{feature.description}</p>
+                  <p className="text-gray-600 dark:text-gray-400 mb-4">{feature.description}</p>
                   <ul className="space-y-2 mb-4">
                     {feature.listItems.map((item, i) => (
                       <li key={i} className="flex items-start">

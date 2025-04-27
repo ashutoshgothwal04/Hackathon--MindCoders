@@ -85,20 +85,20 @@ export function PropertyComparison() {
   }
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+    <div className="bg-white dark:bg-bg-color rounded-2xl shadow-sm p-8">
       <h2 className="text-3xl font-bold mb-8">Property Comparison</h2>
 
       <div className="overflow-x-auto">
         <table className="w-full min-w-[800px]">
           <thead>
-            <tr className="border-b border-gray-100">
-              <th className="text-left p-4 font-medium text-gray-500">Property</th>
+            <tr className="border-b border-gray-100 dark:border-gray-800">
+              <th className="text-left p-4 font-medium dark:text-gray-400 text-gray-500">Property</th>
               {properties.map((property) => (
                 <th key={property.id} className="p-4 min-w-[250px]">
                   <div className="relative">
                     <button
                       onClick={() => removeProperty(property.id)}
-                      className="absolute -top-2 -right-2 z-10 bg-gray-100 rounded-full p-1 hover:bg-gray-200 transition-colors"
+                      className="absolute -top-2 -right-2 z-10 dark:text-bg-color bg-gray-100 rounded-full p-1 hover:bg-gray-200 transition-colors"
                     >
                       <X className="h-4 w-4" />
                     </button>
@@ -111,7 +111,7 @@ export function PropertyComparison() {
                       />
                     </div>
                     <h3 className="font-semibold text-lg mb-2">{property.title}</h3>
-                    <p className="text-gray-500 flex items-center mb-2">
+                    <p className="text-gray-500 flex items-center justify-center mb-2">
                       <MapPin className="h-4 w-4 mr-1 flex-shrink-0" />
                       {property.location}
                     </p>
@@ -122,7 +122,7 @@ export function PropertyComparison() {
             </tr>
           </thead>
           <tbody>
-            <tr className="border-b border-gray-100">
+            <tr className="border-b border-gray-100 dark:border-gray-800">
               <td className="p-4 font-medium">Bedrooms</td>
               {properties.map((property) => (
                 <td key={property.id} className="p-4 text-center">
@@ -133,7 +133,7 @@ export function PropertyComparison() {
                 </td>
               ))}
             </tr>
-            <tr className="border-b border-gray-100">
+            <tr className="border-b border-gray-100 dark:border-gray-800">
               <td className="p-4 font-medium">Bathrooms</td>
               {properties.map((property) => (
                 <td key={property.id} className="p-4 text-center">
@@ -144,7 +144,7 @@ export function PropertyComparison() {
                 </td>
               ))}
             </tr>
-            <tr className="border-b border-gray-100">
+            <tr className="border-b border-gray-100 dark:border-gray-800">
               <td className="p-4 font-medium">Area</td>
               {properties.map((property) => (
                 <td key={property.id} className="p-4 text-center">
@@ -155,7 +155,7 @@ export function PropertyComparison() {
                 </td>
               ))}
             </tr>
-            <tr className="border-b border-gray-100">
+            <tr className="border-b border-gray-100 dark:border-gray-800">
               <td className="p-4 font-medium">Price</td>
               {properties.map((property) => (
                 <td key={property.id} className="p-4 text-center font-bold text-blue-600">
@@ -165,14 +165,14 @@ export function PropertyComparison() {
             </tr>
 
             {/* Amenities */}
-            <tr className="bg-gray-50">
+            <tr className="bg-gray-50 dark:bg-bg-color ">
               <td colSpan={properties.length + 1} className="p-4 font-semibold text-lg">
                 Amenities
               </td>
             </tr>
 
             {allAmenities.map((amenity) => (
-              <tr key={amenity} className="border-b border-gray-100">
+              <tr key={amenity} className="border-b border-gray-100 dark:border-gray-800">
                 <td className="p-4 font-medium">{amenity}</td>
                 {properties.map((property) => (
                   <td key={property.id} className="p-4 text-center">

@@ -4,7 +4,7 @@ import { Button } from "../ui/button"
 export default function FilterSection() {
   return (
     <div className="lg:w-[30%]">
-    <div className="rounded-lg bg-zinc-100/70 p-6 sticky top-24">
+    <div className="rounded-lg bg-zinc-100/70 dark:bg-bg-color p-6 sticky top-24">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-xl font-semibold">Filters</h2>
         <Sliders className="h-5 w-5 text-gray-500" />
@@ -110,7 +110,7 @@ export default function FilterSection() {
         </div>
 
         {/* Apply Filters Button */}
-        <Button className="w-full bg-blue-600 hover:bg-blue-700">Apply Filters</Button>
+        <Button className="w-full bg-blue-600 dark:text-white hover:bg-blue-700">Apply Filters</Button>
       </div>
     </div>
   </div>

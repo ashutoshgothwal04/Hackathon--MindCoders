@@ -4,15 +4,7 @@ import Hero from "@/components/AI-Features/Hero"
 import Matchmaking from "@/components/AI-Features/Matchmaking"
 import Overview from "@/components/AI-Features/Overview"
 import PricePrediction from "@/components/AI-Features/PricePrediction"
-import { Button } from "@/components/ui/button"
-import {
-  Brain,
-  Shield,
-  TrendingUp,
-  Lock,
-  Users,
-  Star,
-} from "lucide-react"
+
 
 export default function AIFeaturesPage() {
   return (

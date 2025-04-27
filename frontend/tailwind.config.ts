@@ -61,7 +61,9 @@ const config: Config = {
   				border: 'hsl(var(--sidebar-border))',
   				ring: 'hsl(var(--sidebar-ring))'
   			},
-            'bg-color': '#1E201E', // Added custom background color
+            'bg-color': '#222222',
+            'bg-prime': '#121212',
+			
   		},
   		borderRadius: {
   			lg: 'var(--radius)',

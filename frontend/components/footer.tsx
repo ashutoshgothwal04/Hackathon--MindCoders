@@ -3,7 +3,7 @@ import { Home, Mail, Phone, Instagram, Twitter, Facebook, Linkedin } from "lucid
 
 export function Footer() {
   return (
-    <footer className="bg-gray-900 text-white pt-20 pb-10">
+    <footer className="bg-bg-color text-white pt-20 pb-10">
       <div className="container mx-auto px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}

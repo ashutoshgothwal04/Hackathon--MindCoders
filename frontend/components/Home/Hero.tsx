@@ -5,7 +5,7 @@ import Link from "next/link"
 export default function Hero() {
   return (
     <section className="relative py-24 md:py-32 overflow-hidden">
-    <div className="absolute inset-0 bg-gradient-to-r from-blue-600/90 to-indigo-700/90 z-0"></div>
+    <div className="absolute inset-0 dark:bg-bg-color bg-blue-600/90 z-0"></div>
     <div className="absolute inset-0 bg-[url('/placeholder.svg?height=1080&width=1920')] bg-cover bg-center opacity-40 mix-blend-overlay"></div>
 
     <div className="container mx-auto px-4 relative z-10">
@@ -21,7 +21,7 @@ export default function Hero() {
           <Button
             size="lg"
             variant="outline"
-            className="text-white bg-white/10 hover:text-blue-700 text-lg px-7 py-3.5 h-auto"
+            className="text-white bg-white/10 dark:hover:text-white hover:text-blue-700 text-lg px-7 py-3.5 h-auto"
           >
             <Link href="/how-it-works">Learn More</Link>
           </Button>

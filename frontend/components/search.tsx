@@ -26,16 +26,16 @@ export function Search() {
   }
 
   return (
-    <div className="rounded-2xl bg-zinc-100/70 p-8">
+    <div className="rounded-2xl bg-zinc-100/70  dark:bg-bg-color p-8">
       <form onSubmit={handleSearch}>
         <div className="flex flex-col md:flex-row md:items-end gap-6 mb-6">
           {/* Location */}
           <div className="flex-1">
-            <label htmlFor="location" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="location" className="block text-sm font-medium text-gray-700 dark:text-white mb-2">
               Location
             </label>
-            <div className="relative">
-              <MapPin className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+            <div className="relative dark:border rounded-xl dark:border-zinc-600">
+              <MapPin className="absolute left-4 top-1/2  transform -translate-y-1/2 text-gray-400 h-5 w-5" />
               <Input
                 id="location"
                 placeholder="City, neighborhood, or address"
@@ -48,7 +48,7 @@ export function Search() {
 
           {/* Price Range */}
           <div className="flex-1">
-            <label htmlFor="price" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="price" className="block text-sm font-medium text-gray-700 dark:text-white mb-2">
               Price Range: ${priceRange[0]} - ${priceRange[1]}
             </label>
             <div className="px-4 py-2">
@@ -66,11 +66,11 @@ export function Search() {
 
           {/* Bedrooms */}
           <div className="w-full md:w-48">
-            <label htmlFor="bedrooms" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="bedrooms" className="block text-sm font-medium text-gray-700 dark:text-white mb-2">
               Bedrooms
             </label>
             <Select value={bedrooms} onValueChange={setBedrooms}>
-              <SelectTrigger className="py-6 text-base rounded-xl">
+              <SelectTrigger className="py-6 dark:border dark:border-zinc-600 text-base rounded-xl">
                 <SelectValue placeholder="Any" />
               </SelectTrigger>
               <SelectContent>
@@ -87,7 +87,7 @@ export function Search() {
           {/* Search Button */}
           <Button
             type="submit"
-            className="w-full md:w-auto bg-blue-600 hover:bg-blue-700 py-6 px-8 text-base rounded-xl"
+            className="w-full md:w-auto bg-blue-600 hover:bg-blue-700 py-6 px-8 text-base dark:text-white rounded-xl"
           >
             <SearchIcon className="h-5 w-5 mr-2" />
             Search
@@ -108,9 +108,9 @@ export function Search() {
 
         {/* Advanced Filters - Content */}
         {expanded && (
-          <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 border-t border-gray-100">
+          <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
             <div>
-              <label htmlFor="propertyType" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="propertyType" className="block text-sm font-medium text-gray-700 dark:text-white mb-2">
                 Property Type
               </label>
               <Select>
@@ -127,7 +127,7 @@ export function Search() {
               </Select>
             </div>
             <div>
-              <label htmlFor="bathrooms" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="bathrooms" className="block text-sm font-medium text-gray-700 dark:text-white mb-2">
                 Bathrooms
               </label>
               <Select>
@@ -144,7 +144,7 @@ export function Search() {
               </Select>
             </div>
             <div>
-              <label htmlFor="amenities" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="amenities" className="block text-sm font-medium text-gray-700 dark:text-white mb-2">
                 Amenities
               </label>
               <Select>
