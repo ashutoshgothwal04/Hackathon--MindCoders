@@ -6,7 +6,6 @@ import {
   updateProperty,
   deleteProperty,
   getPropertiesBySeller,
-  searchPropertiesByLocation,
 } from "../controllers/property.controllers.js";
 
 import { verifyJWT } from "../middlewares/JWT_Verify.js";
@@ -19,8 +18,6 @@ router.use((req, res, next) => {
   if (req.path === "/" && req.method === "GET") {
     next();
   } else if (req.path.match(/^\/[a-fA-F0-9]{24}$/) && req.method === "GET") {
-    next();
-  } else if (req.path === "/search/location" && req.method === "GET") {
     next();
   } else {
     verifyJWT(req, res, next);
@@ -52,8 +49,5 @@ router.delete("/:id", deleteProperty);
 
 // Get properties by seller
 router.get("/seller/:sellerId", getPropertiesBySeller);
-
-// Search properties by location
-router.get("/search/location", searchPropertiesByLocation);
 
 export default router;
