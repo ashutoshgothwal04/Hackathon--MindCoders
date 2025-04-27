@@ -1,5 +1,6 @@
 import { Router } from "express";
-import { verifyJWT } from "../middlewares/JWT_Verify.js";
+import { verifyJWT } from "../middleware/auth.middleware.js";
+import { upload } from "../middlewares/multer.middleware.js";
 import {
   registerUser,
   loginUser,
@@ -21,6 +22,21 @@ router.route("/change-password").post(verifyJWT, changeCurrentPassword);
 router.route("/current-user").get(verifyJWT, getCurrentUser);
 router.route("/update-account-details").post(verifyJWT, updateAccountDetails);
 router.route("/update-profile-picture").post(verifyJWT, updateProfilePicture);
+
+// File upload routes
+router.post(
+  "/avatar",
+  verifyJWT,
+  upload.single("avatar"),
+  updateProfilePicture
+);
+
+router.post(
+  "/cover-image",
+  verifyJWT,
+  upload.single("coverImage"),
+  updateProfilePicture
+);
 
 export default router;
 

@@ -1,4 +1,4 @@
-import { Property } from "../models/property.models.js";
+import { propertyContext } from "../contexts/property.context.js";
 import {
   uploadOnCloudinary,
   deleteFromCloudinary,
@@ -7,48 +7,15 @@ import {
 // Create a new property
 export const createProperty = async (req, res) => {
   try {
-    const { title, description, price, address, location } = req.body;
-
-    // Validate required fields
-    if (!title || !description || !price || !address || !location) {
-      return res.status(400).json({
-        success: false,
-        msg: "All required fields must be provided",
-      });
-    }
-
-    // Handle image uploads
+    const propertyData = req.body;
     const imageFiles = req.files?.images;
-    if (!imageFiles || imageFiles.length === 0) {
-      return res.status(400).json({
-        success: false,
-        msg: "At least one image is required",
-      });
-    }
+    const sellerId = req.user._id;
 
-    const imageUrls = [];
-    for (const file of imageFiles) {
-      const uploadedImage = await uploadOnCloudinary(file.path);
-      if (!uploadedImage?.url) {
-        return res.status(400).json({
-          success: false,
-          msg: "Error uploading images",
-        });
-      }
-      imageUrls.push(uploadedImage.url);
-    }
-
-    // Create property
-    const property = await Property.create({
-      title,
-      description,
-      price,
-      images: imageUrls,
-      address,
-     
-      location,
-      seller: req.user._id,
-    });
+    const property = await propertyContext.createProperty(
+      propertyData,
+      imageFiles,
+      sellerId
+    );
 
     return res.status(201).json({
       success: true,
@@ -58,8 +25,7 @@ export const createProperty = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       success: false,
-      msg: "Error creating property",
-      error: error.message,
+      msg: error.message || "Error creating property",
     });
   }
 };
@@ -67,49 +33,18 @@ export const createProperty = async (req, res) => {
 // Get all properties with optional filters
 export const getAllProperties = async (req, res) => {
   try {
-    const {
-      city,
-      minPrice,
-      maxPrice,
-      sortBy = "createdAt",
-      sortOrder = "desc",
-      page = 1,
-      limit = 10,
-    } = req.query;
-
-    const query = {};
-
-    if (city) query.city = city;
-    if (minPrice || maxPrice) {
-      query.price = {};
-      if (minPrice) query.price.$gte = Number(minPrice);
-      if (maxPrice) query.price.$lte = Number(maxPrice);
-    }
-
-    const sortOptions = {};
-    sortOptions[sortBy] = sortOrder === "desc" ? -1 : 1;
-
-    const properties = await Property.find(query)
-      .sort(sortOptions)
-      .skip((page - 1) * limit)
-      .limit(limit)
-      .populate("seller", "username fullName email");
-
-    const totalProperties = await Property.countDocuments(query);
+    const filters = req.query;
+    const result = await propertyContext.getAllProperties(filters);
 
     return res.status(200).json({
       success: true,
       msg: "Properties fetched successfully",
-      properties,
-      totalProperties,
-      currentPage: page,
-      totalPages: Math.ceil(totalProperties / limit),
+      ...result,
     });
   } catch (error) {
     return res.status(500).json({
       success: false,
-      msg: "Error fetching properties",
-      error: error.message,
+      msg: error.message || "Error fetching properties",
     });
   }
 };
@@ -118,18 +53,7 @@ export const getAllProperties = async (req, res) => {
 export const getPropertyById = async (req, res) => {
   try {
     const { id } = req.params;
-
-    const property = await Property.findById(id).populate(
-      "seller",
-      "username fullName email"
-    );
-
-    if (!property) {
-      return res.status(404).json({
-        success: false,
-        msg: "Property not found",
-      });
-    }
+    const property = await propertyContext.getPropertyById(id);
 
     return res.status(200).json({
       success: true,
@@ -139,8 +63,7 @@ export const getPropertyById = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       success: false,
-      msg: "Error fetching property",
-      error: error.message,
+      msg: error.message || "Error fetching property",
     });
   }
 };
@@ -149,65 +72,16 @@ export const getPropertyById = async (req, res) => {
 export const updateProperty = async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, description, price, address, city, location } = req.body;
-
-    // Check if property exists and belongs to the user
-    const property = await Property.findById(id);
-    if (!property) {
-      return res.status(404).json({
-        success: false,
-        msg: "Property not found",
-      });
-    }
-
-    if (property.seller.toString() !== req.user._id.toString()) {
-      return res.status(403).json({
-        success: false,
-        msg: "You are not authorized to update this property",
-      });
-    }
-
-    // Handle image updates if new images are provided
+    const updateData = req.body;
     const imageFiles = req.files?.images;
-    let imageUrls = property.images;
+    const userId = req.user._id;
 
-    if (imageFiles && imageFiles.length > 0) {
-      // Delete old images from Cloudinary
-      for (const imageUrl of property.images) {
-        const publicId = imageUrl.split("/").pop().split(".")[0];
-        await deleteFromCloudinary(publicId);
-      }
-
-      // Upload new images
-      imageUrls = [];
-      for (const file of imageFiles) {
-        const uploadedImage = await uploadOnCloudinary(file.path);
-        if (!uploadedImage?.url) {
-          return res.status(400).json({
-            success: false,
-            msg: "Error uploading images",
-          });
-        }
-        imageUrls.push(uploadedImage.url);
-      }
-    }
-
-    // Update property
-    const updatedProperty = await Property.findByIdAndUpdate(
+    const updatedProperty = await propertyContext.updateProperty(
       id,
-      {
-        $set: {
-          title,
-          description,
-          price,
-          images: imageUrls,
-          address,
-          city,
-          location,
-        },
-      },
-      { new: true }
-    ).populate("seller", "username fullName email");
+      updateData,
+      imageFiles,
+      userId
+    );
 
     return res.status(200).json({
       success: true,
@@ -217,8 +91,7 @@ export const updateProperty = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       success: false,
-      msg: "Error updating property",
-      error: error.message,
+      msg: error.message || "Error updating property",
     });
   }
 };
@@ -227,31 +100,9 @@ export const updateProperty = async (req, res) => {
 export const deleteProperty = async (req, res) => {
   try {
     const { id } = req.params;
+    const userId = req.user._id;
 
-    // Check if property exists and belongs to the user
-    const property = await Property.findById(id);
-    if (!property) {
-      return res.status(404).json({
-        success: false,
-        msg: "Property not found",
-      });
-    }
-
-    if (property.seller.toString() !== req.user._id.toString()) {
-      return res.status(403).json({
-        success: false,
-        msg: "You are not authorized to delete this property",
-      });
-    }
-
-    // Delete images from Cloudinary
-    for (const imageUrl of property.images) {
-      const publicId = imageUrl.split("/").pop().split(".")[0];
-      await deleteFromCloudinary(publicId);
-    }
-
-    // Delete property
-    await Property.findByIdAndDelete(id);
+    await propertyContext.deleteProperty(id, userId);
 
     return res.status(200).json({
       success: true,
@@ -260,8 +111,7 @@ export const deleteProperty = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       success: false,
-      msg: "Error deleting property",
-      error: error.message,
+      msg: error.message || "Error deleting property",
     });
   }
 };
@@ -270,28 +120,48 @@ export const deleteProperty = async (req, res) => {
 export const getPropertiesBySeller = async (req, res) => {
   try {
     const { sellerId } = req.params;
-    const { page = 1, limit = 10 } = req.query;
-
-    const properties = await Property.find({ seller: sellerId })
-      .skip((page - 1) * limit)
-      .limit(limit)
-      .populate("seller", "username fullName email");
-
-    const totalProperties = await Property.countDocuments({ seller: sellerId });
+    const properties = await propertyContext.getPropertiesBySeller(sellerId);
 
     return res.status(200).json({
       success: true,
       msg: "Properties fetched successfully",
       properties,
-      totalProperties,
-      currentPage: page,
-      totalPages: Math.ceil(totalProperties / limit),
     });
   } catch (error) {
     return res.status(500).json({
       success: false,
-      msg: "Error fetching properties",
-      error: error.message,
+      msg: error.message || "Error fetching properties by seller",
+    });
+  }
+};
+
+// Search properties by location
+export const searchPropertiesByLocation = async (req, res) => {
+  try {
+    const { longitude, latitude, maxDistance } = req.query;
+    
+    if (!longitude || !latitude) {
+      return res.status(400).json({
+        success: false,
+        msg: "Longitude and latitude are required",
+      });
+    }
+
+    const properties = await propertyContext.searchPropertiesByLocation(
+      Number(longitude),
+      Number(latitude),
+      maxDistance ? Number(maxDistance) : undefined
+    );
+
+    return res.status(200).json({
+      success: true,
+      msg: "Properties fetched successfully",
+      properties,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      msg: error.message || "Error searching properties by location",
     });
   }
 };

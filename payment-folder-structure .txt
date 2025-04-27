@@ -1,0 +1,25 @@
+/payment-app
+├── /backend
+│   ├── /controllers
+│   │   └── paymentController.js
+│   ├── /middlewares
+│   │   └── authMiddleware.js
+│   ├── /routes
+│   │   └── paymentRoutes.js
+│   ├── index.js
+│   ├── config.js
+│   └── package.json
+│
+├── /frontend
+ ├── /components
+ │    └── PaymentForm.tsx
+ ├── /pages
+ │    ├── _app.tsx
+ │    ├── payment.tsx
+ │    └── payment-success.tsx   
+ ├── /services
+ │    └── api.ts
+ ├── next-env.d.ts
+ ├── next.config.mjs
+ └── package.json
+
