@@ -1,0 +1,66 @@
+Hackathon--MindCoders/
+├── frontend/
+│   ├── app/
+│   │   ├── components/
+│   │   │   ├── AI-Features/
+│   │   │   ├── Blogs/
+│   │   │   ├── Home/
+│   │   │   ├── Pricing/
+│   │   │   ├── Properties/
+│   │   │   ├── Virtual-Tour/
+│   │   │   ├── ui/
+│   │   │   ├── ai-features.tsx
+│   │   │   ├── featured-properties.tsx
+│   │   │   ├── footer.tsx
+│   │   │   ├── header.tsx
+│   │   │   ├── how-it-works.tsx
+│   │   │   ├── PaymentForm.tsx
+│   │   │   ├── property-card.tsx
+│   │   │   ├── property-comparison.tsx
+│   │   │   ├── search.tsx
+│   │   │   └── theme-provider.tsx
+│   │   ├── config/
+│   │   ├── context/
+│   │   ├── hooks/
+│   │   ├── lib/
+│   │   ├── pages/
+│   │   │   ├── app.tsx
+│   │   │   ├── payment-success.tsx
+│   │   │   └── pyment.tsx
+│   │   ├── public/
+│   │   ├── services/
+│   │   │   ├── apiServices.ts
+│   │   │   ├── propertyServices.ts
+│   │   │   └── userServices.ts
+│   │   ├── styles/
+│   │   ├── utils/
+│   │   ├── .gitignore
+│   │   ├── components.json
+│   │   ├── middleware.ts
+│   │   ├── next-env.d.ts
+│   │   ├── next.config.mjs
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   ├── pnpm-lock.yaml
+│   │   ├── postcss.config.mjs
+│   │   ├── Readme.md
+│   │   ├── tailwind.config.ts
+│   │   └── tsconfig.json
+|
+|
+│   ├── backend/
+│   │   ├── config/
+│   │   ├── contexts/
+│   │   ├── controllers/
+│   │   ├── middlewares/
+│   │   ├── models/
+│   │   ├── routes/
+│   │   ├── services/
+│   │   ├── socket/
+│   │   ├── uploads/
+│   │   ├── utils/
+│   │   ├── .gitIgnore
+│   │   ├── index.js
+│   │   ├── package-lock.json
+│   │   └── package.json
+│   └── README.md 
