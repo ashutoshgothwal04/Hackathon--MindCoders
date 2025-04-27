@@ -103,9 +103,9 @@ export function Header() {
                 <PopoverTrigger asChild>
                   <Button variant="ghost" className="relative h-8 w-8 rounded-full">
                     <Avatar className="h-8 w-8">
-                      {/* <AvatarImage src={user?.avatar} alt={user?.username || "User"} /> */}
+                      <AvatarImage src={user?.avatar} alt={user?.username || "User"} />
                       <AvatarFallback>
-                        <User className="h-5 w-5 dark:text-white" /> {/* Use User icon */}
+                        {user?.avatar ? getInitials(user.username) : <User className="h-5 w-5 dark:text-white" />}
                       </AvatarFallback>
                     </Avatar>
                   </Button>
@@ -113,9 +113,9 @@ export function Header() {
                 <PopoverContent className="w-64 p-4" align="end">
                   <div className="flex items-center space-x-3 mb-4">
                     <Avatar className="h-10 w-10">
-                       {/* <AvatarImage src={user?.avatar} alt={user?.username || "User"} /> */}
+                       <AvatarImage src={user?.avatar} alt={user?.username || "User"} />
                        <AvatarFallback>
-                         <User className="h-6 w-6 dark:text-white" /> {/* Use User icon */}
+                         {user?.avatar ? getInitials(user.username) : <User className="h-6 w-6 dark:text-white" />}
                        </AvatarFallback>
                     </Avatar>
                     <div>
@@ -135,6 +135,12 @@ export function Header() {
                       <Button variant="ghost" className="w-full justify-start px-2 py-1.5 text-sm">
                         <Home className="h-4 w-4 mr-2" /> {/* Using Home icon for seller dashboard */}
                         Seller Dashboard
+                      </Button>
+                    </Link>
+                    <Link href="/profile" passHref>
+                      <Button variant="ghost" className="w-full justify-start px-2 py-1.5 text-sm">
+                        <User className="h-4 w-4 mr-2" />
+                        Profile
                       </Button>
                     </Link>
                   </div>
@@ -200,9 +206,9 @@ export function Header() {
                 <>
                   <div className="flex items-center space-x-3 px-1 py-2">
                      <Avatar className="h-10 w-10">
-                       {/* <AvatarImage src={user?.avatar} alt={user?.username || "User"} /> */}
+                       <AvatarImage src={user?.avatar} alt={user?.username || "User"} />
                        <AvatarFallback>
-                         <User className="h-6 w-6 dark:text-white" /> {/* Use User icon */}
+                         {user?.avatar ? getInitials(user.username) : <User className="h-6 w-6 dark:text-white" />}
                        </AvatarFallback>
                     </Avatar>
                     <div>
@@ -221,6 +227,12 @@ export function Header() {
                       <Button variant="ghost" className="w-full justify-start" onClick={toggleMenu}>
                         <Home className="h-4 w-4 mr-2" />
                         Seller Dashboard
+                      </Button>
+                    </Link>
+                    <Link href="/profile" passHref>
+                      <Button variant="ghost" className="w-full justify-start" onClick={toggleMenu}>
+                        <User className="h-4 w-4 mr-2" />
+                        Profile
                       </Button>
                     </Link>
                   <Button
