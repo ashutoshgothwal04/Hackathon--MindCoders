@@ -7,6 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { Calendar, MapPin, Bed, Bath, Maximize, Play, Info, ArrowLeft, Share2, Heart, Phone } from "lucide-react"
+import VirtualCard from "@/components/VirtualCard"
 
 interface VirtualTourPageProps {
   params: {
@@ -44,8 +45,8 @@ const getTourData = (id: string) => {
     tourTypes: ["VR", "3D Walkthrough", id === "3" ? "AR Experience" : null].filter(Boolean),
     availableDate: "2023-08-15",
     agent: {
-      name: "Alex Johnson",
-      phone: "(555) 123-4567",
+      name: "Ashutosh Chinal",
+      phone: "789-823-4671",
       email: "alex@homematch.com",
       image: "/placeholder.svg?height=100&width=100",
     },
@@ -94,7 +95,7 @@ export default function VirtualTourPage({ params }: VirtualTourPageProps) {
               <div className="bg-black/50 p-4 rounded-full inline-flex items-center justify-center mb-4">
                 <Play className="h-12 w-12 text-white" />
               </div>
-              <p className="text-gray-800 bg-white/80 px-4 py-2 rounded-md">Click to start virtual tour</p>
+              <p className="text-gray-800 bg-white/80  px-4 py-2 rounded-md">Click to start virtual tour</p>
             </div>
           </div>
           <Image
@@ -150,17 +151,17 @@ export default function VirtualTourPage({ params }: VirtualTourPageProps) {
               <div>
                 <h2 className="text-2xl font-semibold mb-4">Property Details</h2>
                 <div className="grid grid-cols-3 gap-4 mb-6">
-                  <div className="flex flex-col items-center p-4 bg-gray-50 rounded-lg">
+                  <div className="flex flex-col items-center p-4 bg-gray-50 dark:bg-bg-color rounded-lg">
                     <Bed className="h-6 w-6 text-blue-600 mb-2" />
                     <span className="text-lg font-medium">{tour.beds}</span>
                     <span className="text-sm text-gray-500">Bedrooms</span>
                   </div>
-                  <div className="flex flex-col items-center p-4 bg-gray-50 rounded-lg">
+                  <div className="flex flex-col items-center p-4 bg-gray-50 dark:bg-bg-color rounded-lg">
                     <Bath className="h-6 w-6 text-blue-600 mb-2" />
                     <span className="text-lg font-medium">{tour.baths}</span>
                     <span className="text-sm text-gray-500">Bathrooms</span>
                   </div>
-                  <div className="flex flex-col items-center p-4 bg-gray-50 rounded-lg">
+                  <div className="flex flex-col items-center p-4 bg-gray-50 dark:bg-bg-color rounded-lg">
                     <Maximize className="h-6 w-6 text-blue-600 mb-2" />
                     <span className="text-lg font-medium">{tour.sqft}</span>
                     <span className="text-sm text-gray-500">Sq Ft</span>
@@ -214,7 +215,7 @@ export default function VirtualTourPage({ params }: VirtualTourPageProps) {
                       Experience this property in full immersion with our VR tour. Compatible with Oculus, HTC Vive, and
                       other VR headsets.
                     </p>
-                    <Button className="bg-blue-600 hover:bg-blue-700">Start VR Tour</Button>
+                    <Button className="bg-blue-600 dark:text-white hover:bg-blue-700">Start VR Tour</Button>
                   </div>
                 )}
 
@@ -254,7 +255,7 @@ export default function VirtualTourPage({ params }: VirtualTourPageProps) {
             <CardContent className="p-6">
               <div className="text-center mb-6">
                 <div className="text-2xl font-bold text-blue-600">${tour.price}/mo</div>
-                <div className="flex items-center justify-center text-gray-600 mt-1">
+                <div className="flex items-center justify-center text-gray-600 dark:text-gray-400 mt-1">
                   <Calendar className="h-4 w-4 mr-1" />
                   <span>Available {new Date(tour.availableDate).toLocaleDateString()}</span>
                 </div>
@@ -273,12 +274,12 @@ export default function VirtualTourPage({ params }: VirtualTourPageProps) {
                 </div>
                 <div>
                   <h3 className="font-medium">{tour.agent.name}</h3>
-                  <p className="text-sm text-gray-600">Property Agent</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Aand Developer</p>
                 </div>
               </div>
 
               <div className="space-y-3">
-                <Button className="w-full bg-blue-600 hover:bg-blue-700">Schedule In-Person Tour</Button>
+                <Button className="w-full bg-blue-600 dark:text-white hover:bg-blue-700">Schedule In-Person Tour</Button>
                 <Button variant="outline" className="w-full">
                   <Phone className="h-4 w-4 mr-2" />
                   {tour.agent.phone}
@@ -288,16 +289,16 @@ export default function VirtualTourPage({ params }: VirtualTourPageProps) {
                 </Button>
               </div>
 
-              <div className="mt-4 text-center text-sm text-gray-600">
+              <div className="mt-4 text-center text-sm dark:text-gray-400 text-gray-600">
                 <Info className="h-4 w-4 inline mr-1" />
                 <span>Usually responds within 24 hours</span>
               </div>
             </CardContent>
           </Card>
 
-          <div className="mt-6 bg-blue-50 p-4 rounded-lg">
+          <div className="mt-6 bg-blue-50 dark:bg-black p-4 rounded-lg">
             <h3 className="font-medium mb-2">Not ready to tour yet?</h3>
-            <p className="text-sm text-gray-700 mb-3">
+            <p className="text-sm dark:text-gray-400 text-gray-700 mb-3">
               Save this property to your favorites or share it with friends and family.
             </p>
             <div className="grid grid-cols-2 gap-3">
@@ -321,33 +322,7 @@ export default function VirtualTourPage({ params }: VirtualTourPageProps) {
           {[1, 2, 3]
             .filter((i) => i !== Number.parseInt(tour.id))
             .map((i) => (
-              <Card key={i} className="overflow-hidden">
-                <div className="relative h-48">
-                  <Image
-                    src={`/placeholder.svg?height=400&width=600&text=Property+${i}`}
-                    alt={`Property ${i}`}
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute top-3 right-3 bg-blue-600 text-white px-2 py-1 rounded text-sm font-medium">
-                    VR Ready
-                  </div>
-                </div>
-                <CardContent className="p-4">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="font-bold text-lg">${1800 + i * 500}/mo</span>
-                    <div className="flex text-sm dark:text-gray-400 text-gray-500">
-                      <span className="mr-2">{i + 1} beds</span>
-                      <span>{i + 1} baths</span>
-                    </div>
-                  </div>
-                  <h3 className="font-semibold mb-1">Modern Apartment {i}</h3>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">Downtown, New York</p>
-                  <Link href={`/virtual-tours/${i}`}>
-                    <Button className="w-full bg-blue-600 hover:bg-blue-700">View Virtual Tour</Button>
-                  </Link>
-                </CardContent>
-              </Card>
+              <VirtualCard key={i} i={i.toString()} />
             ))}
         </div>
       </div>

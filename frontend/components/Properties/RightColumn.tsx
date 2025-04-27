@@ -9,7 +9,7 @@ export default function RightColumn() {
   return (
     <div className="lg:col-span-1">
     {/* Booking Card */}
-    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 mb-8">
+    <div className="bg-white rounded-2xl dark:bg-bg-color dark:border-bg-color  shadow-sm border border-gray-100 p-8 mb-8">
       <h3 className="text-2xl font-semibold mb-6">Book a Viewing</h3>
       <div className="mb-6">
         <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -17,7 +17,7 @@ export default function RightColumn() {
         </label>
         <input
           type="date"
-          className="w-full p-4 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full p-4 border border-gray-200 rounded-xl dark:border-none focus:outline-none focus:ring-2 focus:ring-blue-500"
           min={new Date().toISOString().split("T")[0]}
         />
       </div>
@@ -25,23 +25,23 @@ export default function RightColumn() {
         <label className="block text-sm font-medium text-gray-700 mb-2">
           Select Time
         </label>
-        <select className="w-full p-4 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <select className="w-full p-4 border border-gray-200 rounded-xl dark:border-none focus:outline-none focus:ring-2 focus:ring-blue-500">
           {timeSlots.map((time, index) => (
             <option key={index}>{time}</option>
           ))}
         </select>
       </div>
-      <Button className="w-full bg-blue-600 hover:bg-blue-700 mb-4 rounded-xl py-4 h-auto text-lg">
+      <Button className="w-full bg-blue-600 dark:text-white hover:bg-blue-700 mb-4 rounded-xl py-4 h-auto text-lg">
         Schedule Viewing
       </Button>
       <Button
         variant="outline"
-        className="w-full mb-8 rounded-xl py-4 h-auto text-lg"
+        className="w-full dark:bg-white dark:text-black mb-8 rounded-xl py-4 h-auto text-lg"
       >
         Request Virtual Tour
       </Button>
 
-      <div className="border-t border-gray-100 pt-8">
+      <div className="pt-8">
         <h4 className="font-semibold text-xl mb-6">
           Interested in this property?
         </h4>
@@ -57,7 +57,7 @@ export default function RightColumn() {
             </Button>
           ))}
         </div>
-        <Button className="w-full bg-green-600 hover:bg-green-700 flex items-center justify-center rounded-xl py-4 h-auto text-lg">
+        <Button className="w-full bg-green-600 dark:text-white hover:bg-green-700 flex items-center justify-center rounded-xl py-4 h-auto text-lg">
           <CreditCard className="h-5 w-5 mr-2" />
           Reserve Now
         </Button>
@@ -65,7 +65,7 @@ export default function RightColumn() {
     </div>
 
     {/* Landlord Card */}
-    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+    <div className="bg-white rounded-2xl dark:bg-bg-color dark:border-bg-color  shadow-sm border border-gray-100 p-8">
       <h3 className="text-2xl font-semibold mb-6">About the Landlord</h3>
       <div className="flex items-center mb-6">
         <div>
@@ -79,7 +79,7 @@ export default function RightColumn() {
       </div>
       <div className="space-y-3 mb-6">
         {landlordStats.map((stat, index) => (
-          <div key={index} className="flex justify-between p-3 bg-gray-50 rounded-xl">
+          <div key={index} className="flex justify-between p-3 dark:bg-bg-prime bg-gray-50 rounded-xl">
             <span className="text-gray-600">{stat.label}</span>
             <span className="font-medium">
               {stat.value}

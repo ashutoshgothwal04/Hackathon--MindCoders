@@ -16,7 +16,7 @@ export default function PropertyHeader() {
           Properties
         </Link>
         <ChevronRight className="h-4 w-4 mx-2" />
-        <span className="text-gray-700 font-medium">{property.title}</span>
+        <span className="text-gray-700 dark:text-gray-400 font-medium">{property.title}</span>
       </div>
 
       {/* Back Button */}
@@ -29,9 +29,9 @@ export default function PropertyHeader() {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
         <div>
           <h1 className="text-3xl md:text-4xl font-bold mb-3">{property.title}</h1>
-          <div className="flex items-center text-gray-600">
+          <div className="flex items-center dark:text-gray-400 text-gray-600">
             <MapPin className="h-5 w-5 mr-2 text-blue-600" />
-            <span className="text-lg">{property.location}</span>
+            <span className="text-lg ">{property.location}</span>
           </div>
         </div>
         <div className="flex items-center mt-4 md:mt-0 space-x-4">

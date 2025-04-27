@@ -7,11 +7,11 @@ export default function LeftColumn() {
  
 
   return (
-    <div className="lg:col-span-2">
+    <div className="lg:col-span-2 ">
     {/* AI Match Badge */}
     {property.matchPercentage && (
-      <div className="mb-8 bg-blue-50 border border-blue-200 rounded-2xl p-6 flex items-center">
-        <div className="bg-blue-100 p-3 rounded-full mr-6">
+      <div className="mb-8 bg-blue-50 dark:bg-bg-color dark:border-bg-color border border-blue-200 rounded-2xl p-6 flex items-center">
+        <div className="bg-blue-100 p-3  rounded-full mr-6">
           <Star className="h-8 w-8 text-blue-600" fill="currentColor" />
         </div>
         <div>
@@ -24,7 +24,7 @@ export default function LeftColumn() {
     )}
 
     {/* Property Overview */}
-    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 mb-8">
+    <div className="bg-white rounded-2xl  dark:bg-bg-color dark:border-bg-color shadow-sm border border-gray-100 p-8 mb-8">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-3xl font-bold text-blue-600">${property.price.toLocaleString()}/month</h2>
         <div className="flex items-center">
@@ -36,7 +36,7 @@ export default function LeftColumn() {
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
         {propertyStats.map((stat, index) => (
-          <div key={index} className="flex flex-col items-center text-center p-4 bg-gray-50 rounded-xl">
+          <div key={index} className="flex flex-col items-center text-center p-4 dark:bg-bg-prime bg-gray-50 rounded-xl">
             <stat.icon className="h-6 w-6 text-blue-600 mb-2" />
             <p className="font-semibold text-xl mb-1">{stat.value}</p>
             <p className="text-sm text-gray-500">{stat.label}</p>
@@ -55,11 +55,11 @@ export default function LeftColumn() {
       )}
 
       <h3 className="text-2xl font-semibold mb-4">Description</h3>
-      <p className="text-gray-700 leading-relaxed mb-6">{property.description}</p>
+      <p className="text-gray-700 dark:text-gray-400 leading-relaxed mb-6">{property.description}</p>
     </div>
 
     {/* Property Tabs */}
-    <Tabs defaultValue="details" className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 mb-8">
+    <Tabs defaultValue="details" className="bg-white rounded-2xl  dark:bg-bg-color dark:border-bg-color shadow-sm border border-gray-100 p-8 mb-8">
       <TabsList className="grid grid-cols-4 mb-8">
         <TabsTrigger value="details" className="text-base py-3">
           Details
@@ -79,8 +79,8 @@ export default function LeftColumn() {
         <h3 className="text-2xl font-semibold mb-4">Property Details</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {propertyDetails.map((detail, index) => (
-            <div key={index} className="flex items-center p-4 bg-gray-50 rounded-xl">
-              <div className="w-40 text-gray-500">{detail.label}</div>
+            <div key={index} className="flex items-center p-4 dark:bg-bg-prime bg-gray-50 rounded-xl">
+              <div className="w-40 dark:text-gray-400 text-gray-500">{detail.label}</div>
               <div className="font-medium">{detail.value}</div>
             </div>
           ))}
@@ -91,7 +91,7 @@ export default function LeftColumn() {
         <h3 className="text-2xl font-semibold mb-6">Amenities</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {property.amenities.map((amenity, index) => (
-            <div key={index} className="flex items-center p-3 bg-gray-50 rounded-xl">
+            <div key={index} className="flex items-center p-3 dark:bg-bg-prime bg-gray-50 rounded-xl">
               <Check className="h-5 w-5 text-green-500 mr-3" />
               <span className="font-medium">{amenity}</span>
             </div>
@@ -115,7 +115,7 @@ export default function LeftColumn() {
           ></iframe>
         </div>
         <h4 className="font-semibold text-xl mb-3">Neighborhood</h4>
-        <p className="text-gray-700 mb-6 leading-relaxed">
+        <p className="text-gray-700 dark:text-gray-400 mb-6 leading-relaxed">
           Located in the heart of Mumbai, this neighborhood offers easy access to restaurants, shopping, and
           public transportation. The area is known for its vibrant nightlife and cultural attractions.
         </p>
@@ -124,7 +124,7 @@ export default function LeftColumn() {
             <h4 className="font-semibold text-lg mb-4">Nearby Amenities</h4>
             <ul className="space-y-3">
               {nearbyAmenities.map((amenity, index) => (
-                <li key={index} className="flex items-center p-3 bg-gray-50 rounded-xl">
+                <li key={index} className="flex items-center p-3 dark:bg-bg-prime bg-gray-50 rounded-xl">
                   <Check className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
                   <span>{amenity}</span>
                 </li>
@@ -135,7 +135,7 @@ export default function LeftColumn() {
             <h4 className="font-semibold text-lg mb-4">Transportation</h4>
             <ul className="space-y-3">
               {transportationOptions.map((option, index) => (
-                <li key={index} className="flex items-center p-3 bg-gray-50 rounded-xl">
+                <li key={index} className="flex items-center p-3 dark:bg-bg-prime bg-gray-50 rounded-xl">
                   <Check className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
                   <span>{option}</span>
                 </li>
@@ -147,8 +147,8 @@ export default function LeftColumn() {
 
       <TabsContent value="reviews">
         <h3 className="text-2xl font-semibold mb-6">Reviews</h3>
-        <div className="flex flex-col md:flex-row items-start md:items-center gap-8 mb-8 p-6 bg-gray-50 rounded-xl">
-          <div className="bg-white p-6 rounded-xl shadow-sm flex items-center">
+        <div className="flex flex-col md:flex-row items-start md:items-center gap-8 mb-8 p-6 dark:bg-bg-prime  bg-gray-50 rounded-xl">
+          <div className="bg-white dark:bg-bg-prime p-6 rounded-xl shadow-sm flex items-center">
             <span className="text-4xl font-bold text-blue-600 mr-3">{property.rating}</span>
             <div>
               <div className="flex">
@@ -198,7 +198,7 @@ export default function LeftColumn() {
                   <Star key={i} className="h-4 w-4 text-yellow-500" fill="currentColor" />
                 ))}
               </div>
-              <p className="text-gray-700 leading-relaxed">
+              <p className="text-gray-700 dark:text-gray-400 leading-relaxed">
                 {review.comment}
               </p>
             </div>
@@ -210,17 +210,17 @@ export default function LeftColumn() {
     </Tabs>
 
     {/* Virtual Tour */}
-    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 mb-8">
+    <div className="bg-white rounded-2xl shadow-sm border dark:bg-bg-color dark:border-bg-color border-gray-100 p-8 mb-8">
       <h3 className="text-2xl font-semibold mb-6">Virtual Tour</h3>
-      <div className="relative h-[400px] w-full bg-gray-100 rounded-xl flex items-center justify-center">
+      <div className="relative h-[400px] w-full bg-gray-100  dark:bg-bg-prime rounded-xl flex items-center justify-center">
         <div className="text-center max-w-md px-6">
           <Headset className="h-20 w-20 text-blue-600 mx-auto mb-6" />
           <h4 className="text-xl font-semibold mb-3">Experience this property in VR</h4>
-          <p className="text-gray-600 mb-6 leading-relaxed">
+          <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
             Take a virtual tour of this property from anywhere, anytime. Explore every room as if you were
             actually there.
           </p>
-          <Button className="bg-blue-600 hover:bg-blue-700 rounded-xl px-7 py-3 h-auto text-lg">
+          <Button className="bg-blue-600 dark:text-white hover:bg-blue-700 rounded-xl px-7 py-3 h-auto text-lg">
             Start Virtual Tour
           </Button>
         </div>
@@ -228,13 +228,13 @@ export default function LeftColumn() {
     </div>
 
     {/* Property Comparison Tool */}
-    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+    <div className="bg-white rounded-2xl shadow-sm border  dark:bg-bg-color dark:border-bg-color border-gray-100 p-8">
       <h3 className="text-2xl font-semibold mb-6">Compare Properties</h3>
-      <p className="text-gray-600 mb-6">
+      <p className="text-gray-600 dark:text-gray-400 mb-6">
         Add this property to your comparison list to compare features, prices, and amenities with other
         properties.
       </p>
-      <Button variant="outline" className="rounded-xl px-7 py-3 h-auto text-lg">
+      <Button variant="default" className="rounded-xl px-7 py-3 h-auto text-lg">
         Add to Compare
       </Button>
     </div>

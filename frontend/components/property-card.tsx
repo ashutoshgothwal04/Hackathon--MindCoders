@@ -1,3 +1,5 @@
+'use client'
+
 import Image from "next/image"
 import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
@@ -22,14 +24,14 @@ interface PropertyCardProps {
     matchPercentage?: number
     liked?: boolean // Optional liked state from context
   };
-  onCompareToggle: (id: string, add: boolean) => void;
-  isComparing: boolean;
+  onCompareToggle?: (id: string, add: boolean) => void; // Made optional
+  isComparing?: boolean; // Made optional
   // Add props for like functionality if state is managed externally
   // isLiked: boolean;
   // onLikeToggle: (id: string, like: boolean) => void;
 }
 
-export function PropertyCard({ property, onCompareToggle, isComparing }: PropertyCardProps) {
+export function PropertyCard({ property, onCompareToggle, isComparing = false }: PropertyCardProps) { // Default isComparing to false
   // Local state for liked status - ideally lift this up if needed globally
   const [isLiked, setIsLiked] = useState(property.liked ?? false);
 
@@ -136,15 +138,18 @@ export function PropertyCard({ property, onCompareToggle, isComparing }: Propert
                View Details
              </Link>
            </Button>
-          <Button
-            variant={isComparing ? "destructive" : "outline"} // Use destructive variant for remove
-            className={`w-full rounded-xl h-12 dark:hover:text-black transition-colors ${
-              isComparing ? 'bg-red-500 hover:bg-red-600 text-white border-red-500 hover:border-red-600' : 'border-gray-300 hover:bg-gray-50'
-            }`}
-            onClick={() => onCompareToggle(property.id, !isComparing)}
-          >
-            {isComparing ? "Remove" : "Compare"}
-          </Button>
+           {/* Conditionally render Compare button only if onCompareToggle is provided */}
+           {onCompareToggle && (
+             <Button
+               variant={isComparing ? "destructive" : "outline"} // Use destructive variant for remove
+               className={`w-full rounded-xl h-12 dark:hover:text-black transition-colors ${
+                 isComparing ? 'bg-red-500 hover:bg-red-600 text-white border-red-500 hover:border-red-600' : 'border-gray-300 hover:bg-gray-50'
+               }`}
+               onClick={() => onCompareToggle(property.id, !isComparing)}
+             >
+               {isComparing ? "Remove" : "Compare"}
+             </Button>
+           )}
         </div>
       </CardContent>
     </Card>
