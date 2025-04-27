@@ -75,7 +75,7 @@ export function Header() {
 
   return (
     <header className={`sticky top-0 z-50 transition-shadow bg-white/90 dark:bg-bg-prime/90 duration-200 ${isScrolled ? 'shadow-md' : 'shadow-sm'} `}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8"> {/* Adjusted padding */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-12"> {/* Adjusted padding */}
         <div className="flex items-center justify-between h-16 md:h-20"> {/* Adjusted height */}
           {/* Logo */}
           <Link href="/" className="flex items-center" onClick={closeMenu}>

@@ -177,7 +177,7 @@ export default function AddListingPage() {
   return (
     // Wrap with a form if you intend to submit all data at once
     // <form onSubmit={handlePublish}>
-      <div className="flex min-h-screen bg-gray-50">
+      <div className="flex min-h-screen dark:bg-bg-prime bg-gray-50">
         {/* Main Content */}
         <div className="flex-1 p-8">
           <div className="max-w-3xl mx-auto">
@@ -224,7 +224,7 @@ export default function AddListingPage() {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                           {/* Property Title */}
                           <div className="md:col-span-2">
-                            <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
+                            <label htmlFor="title" className="block text-sm font-medium dark:text-gray-400 text-gray-700 mb-2">
                               Property Title*
                             </label>
                             <Input
@@ -237,7 +237,7 @@ export default function AddListingPage() {
                           </div>
                           {/* Description */}
                           <div className="md:col-span-2">
-                            <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
+                            <label htmlFor="description" className="block text-sm font-medium dark:text-gray-400 text-gray-700 mb-2">
                               Description*
                             </label>
                             <Textarea
@@ -250,13 +250,13 @@ export default function AddListingPage() {
                           </div>
                           {/* Property Type */}
                           <div>
-                            <label htmlFor="propertyType" className="block text-sm font-medium text-gray-700 mb-2">
+                            <label htmlFor="propertyType" className="block text-sm font-medium dark:text-gray-400 text-gray-700 mb-2">
                               Property Type*
                             </label>
                             <select
                               id="propertyType"
                               name="propertyType"
-                              className="w-full p-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" // Added bg-white for consistency
+                              className="w-full p-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 dark:bg-bg-prime dark:border-bg-prime dark:focus:ring-bg-color focus:ring-blue-500 bg-white" // Added bg-white for consistency
                               required
                             >
                               <option value="">Select property type</option>
@@ -270,13 +270,13 @@ export default function AddListingPage() {
                           </div>
                           {/* Rental Type */}
                           <div>
-                            <label htmlFor="rentalType" className="block text-sm font-medium text-gray-700 mb-2">
+                            <label htmlFor="rentalType" className="block text-sm font-medium dark:text-gray-400 text-gray-700 mb-2">
                               Rental Type*
                             </label>
                             <select
                               id="rentalType"
                               name="rentalType"
-                              className="w-full p-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                              className="w-full p-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 dark:bg-bg-prime dark:border-bg-prime dark:focus:ring-bg-color focus:ring-blue-500 bg-white"
                               required
                             >
                               <option value="">Select rental type</option>
@@ -287,7 +287,7 @@ export default function AddListingPage() {
                           </div>
                           {/* Bedrooms */}
                           <div>
-                            <label htmlFor="bedrooms" className="block text-sm font-medium text-gray-700 mb-2">
+                            <label htmlFor="bedrooms" className="block text-sm font-medium dark:text-gray-400 text-gray-700 mb-2">
                               Bedrooms*
                             </label>
                             <div className="flex items-center">
@@ -305,7 +305,7 @@ export default function AddListingPage() {
                           </div>
                           {/* Bathrooms */}
                           <div>
-                            <label htmlFor="bathrooms" className="block text-sm font-medium text-gray-700 mb-2">
+                            <label htmlFor="bathrooms" className="block text-sm font-medium dark:text-gray-400 text-gray-700 mb-2">
                               Bathrooms*
                             </label>
                             <div className="flex items-center">
@@ -324,7 +324,7 @@ export default function AddListingPage() {
                           </div>
                           {/* Area */}
                           <div>
-                            <label htmlFor="area" className="block text-sm font-medium text-gray-700 mb-2">
+                            <label htmlFor="area" className="block text-sm font-medium dark:text-gray-400 text-gray-700 mb-2">
                               Area (sq ft)*
                             </label>
                             <div className="flex items-center">
@@ -342,7 +342,7 @@ export default function AddListingPage() {
                           </div>
                           {/* Year Built */}
                           <div>
-                            <label htmlFor="yearBuilt" className="block text-sm font-medium text-gray-700 mb-2">
+                            <label htmlFor="yearBuilt" className="block text-sm font-medium dark:text-gray-400 text-gray-700 mb-2">
                               Year Built
                             </label>
                             <Input
@@ -375,7 +375,7 @@ export default function AddListingPage() {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                           {/* Street Address */}
                           <div className="md:col-span-2">
-                            <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-2">
+                            <label htmlFor="address" className="block text-sm font-medium dark:text-gray-400 text-gray-700 mb-2">
                               Street Address*
                             </label>
                             <Input
@@ -388,34 +388,34 @@ export default function AddListingPage() {
                           </div>
                           {/* City */}
                           <div>
-                            <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-2">
+                            <label htmlFor="city" className="block text-sm font-medium dark:text-gray-400 text-gray-700 mb-2">
                               City*
                             </label>
                             <Input id="city" name="city" placeholder="e.g. New York" className="w-full p-3 rounded-xl" required />
                           </div>
                           {/* State */}
                           <div>
-                            <label htmlFor="state" className="block text-sm font-medium text-gray-700 mb-2">
+                            <label htmlFor="state" className="block text-sm font-medium dark:text-gray-400 text-gray-700 mb-2">
                               State/Province*
                             </label>
                             <Input id="state" name="state" placeholder="e.g. NY" className="w-full p-3 rounded-xl" required />
                           </div>
                           {/* Zip Code */}
                           <div>
-                            <label htmlFor="zipCode" className="block text-sm font-medium text-gray-700 mb-2">
+                            <label htmlFor="zipCode" className="block text-sm font-medium dark:text-gray-400 text-gray-700 mb-2">
                               ZIP/Postal Code*
                             </label>
                             <Input id="zipCode" name="zipCode" placeholder="e.g. 10001" className="w-full p-3 rounded-xl" required />
                           </div>
                           {/* Country */}
                           <div>
-                            <label htmlFor="country" className="block text-sm font-medium text-gray-700 mb-2">
+                            <label htmlFor="country" className="block text-sm font-medium dark:text-gray-400 text-gray-700 mb-2">
                               Country*
                             </label>
                             <select
                               id="country"
                               name="country"
-                              className="w-full p-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                              className="w-full p-3 border border-gray-200 rounded-xl dark:bg-bg-prime dark:border-bg-prime dark:focus:ring-bg-color focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
                               required
                             >
                               <option value="">Select country</option>
@@ -428,7 +428,7 @@ export default function AddListingPage() {
                           </div>
                           {/* Neighborhood */}
                           <div className="md:col-span-2">
-                            <label htmlFor="neighborhood" className="block text-sm font-medium text-gray-700 mb-2">
+                            <label htmlFor="neighborhood" className="block text-sm font-medium dark:text-gray-400 text-gray-700 mb-2">
                               Neighborhood
                             </label>
                             <Input id="neighborhood" name="neighborhood" placeholder="e.g. Downtown" className="w-full p-3 rounded-xl" />
@@ -472,7 +472,7 @@ export default function AddListingPage() {
                           <FeatureCheckboxGroup title="Utilities & Policies" features={utilitiesPolicies} />
 
                           <div>
-                            <label htmlFor="additionalFeatures" className="block text-sm font-medium text-gray-700 mb-2">
+                            <label htmlFor="additionalFeatures" className="block text-sm font-medium dark:text-gray-400 text-gray-700 mb-2">
                               Additional Features
                             </label>
                             <Textarea
@@ -522,7 +522,7 @@ export default function AddListingPage() {
 
                           {/* Main Photo Upload */}
                           <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">Main Property Photo*</label>
+                            <label className="block text-sm font-medium dark:text-gray-400 text-gray-700 mb-2">Main Property Photo*</label>
                             <div className="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center">
                               <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
                               <p className="text-gray-600 mb-2">Drag and drop your main property photo here</p>
@@ -538,7 +538,7 @@ export default function AddListingPage() {
 
                           {/* Additional Photos Upload */}
                           <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                            <label className="block text-sm font-medium dark:text-gray-400 text-gray-700 mb-2">
                               Additional Photos (up to 20)
                             </label>
                             <div className="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center">
@@ -556,7 +556,7 @@ export default function AddListingPage() {
 
                           {/* Uploaded Photos Preview */}
                           <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-4">Uploaded Photos (Placeholder)</label>
+                            <label className="block text-sm font-medium dark:text-gray-400 text-gray-700 mb-4">Uploaded Photos (Placeholder)</label>
                             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                               {[1, 2, 3].map((i) => (
                                 <div key={i} className="relative group">
@@ -587,7 +587,7 @@ export default function AddListingPage() {
 
                           {/* Virtual Tour */}
                           <div>
-                            <label htmlFor="virtualTour" className="block text-sm font-medium text-gray-700 mb-2">
+                            <label htmlFor="virtualTour" className="block text-sm font-medium dark:text-gray-400 text-gray-700 mb-2">
                               Virtual Tour / 3D Tour (optional)
                             </label>
                             <Input
@@ -600,7 +600,7 @@ export default function AddListingPage() {
 
                           {/* Floor Plan Upload */}
                           <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">Floor Plan (optional)</label>
+                            <label className="block text-sm font-medium dark:text-gray-400 text-gray-700 mb-2">Floor Plan (optional)</label>
                             <div className="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center">
                               <FileText className="h-12 w-12 text-gray-400 mx-auto mb-4" />
                               <p className="text-gray-600 mb-2">Upload a floor plan image</p>
@@ -634,7 +634,7 @@ export default function AddListingPage() {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                           {/* Monthly Rent */}
                           <div>
-                            <label htmlFor="price" className="block text-sm font-medium text-gray-700 mb-2">
+                            <label htmlFor="price" className="block text-sm font-medium dark:text-gray-400 text-gray-700 mb-2">
                               Monthly Rent*
                             </label>
                             <div className="flex items-center">
@@ -652,7 +652,7 @@ export default function AddListingPage() {
                           </div>
                           {/* Security Deposit */}
                           <div>
-                            <label htmlFor="securityDeposit" className="block text-sm font-medium text-gray-700 mb-2">
+                            <label htmlFor="securityDeposit" className="block text-sm font-medium dark:text-gray-400 text-gray-700 mb-2">
                               Security Deposit
                             </label>
                             <div className="flex items-center">
@@ -669,20 +669,20 @@ export default function AddListingPage() {
                           </div>
                           {/* Available From */}
                           <div>
-                            <label htmlFor="availableFrom" className="block text-sm font-medium text-gray-700 mb-2">
+                            <label htmlFor="availableFrom" className="block text-sm font-medium dark:text-gray-400 text-gray-700 mb-2">
                               Available From*
                             </label>
                             <Input id="availableFrom" name="availableFrom" type="date" className="w-full p-3 rounded-xl" required />
                           </div>
                           {/* Minimum Lease Term */}
                           <div>
-                            <label htmlFor="minLeaseTerm" className="block text-sm font-medium text-gray-700 mb-2">
+                            <label htmlFor="minLeaseTerm" className="block text-sm font-medium dark:text-gray-400 text-gray-700 mb-2">
                               Minimum Lease Term*
                             </label>
                             <select
                               id="minLeaseTerm"
                               name="minLeaseTerm"
-                              className="w-full p-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                              className="w-full p-3 border border-gray-200 rounded-xl dark:bg-bg-prime dark:border-bg-prime dark:focus:ring-bg-color focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
                               required
                             >
                               <option value="">Select minimum lease term</option>
@@ -695,7 +695,7 @@ export default function AddListingPage() {
                           </div>
                           {/* Additional Fees */}
                           <div className="md:col-span-2">
-                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                            <label className="block text-sm font-medium dark:text-gray-400 text-gray-700 mb-2">
                               Additional Fees (if applicable)
                             </label>
                             <div className="space-y-4">
@@ -706,7 +706,7 @@ export default function AddListingPage() {
                           </div>
                           {/* Pricing Notes */}
                           <div className="md:col-span-2">
-                            <label htmlFor="pricingNotes" className="block text-sm font-medium text-gray-700 mb-2">
+                            <label htmlFor="pricingNotes" className="block text-sm font-medium dark:text-gray-400 text-gray-700 mb-2">
                               Pricing Notes (optional)
                             </label>
                             <Textarea

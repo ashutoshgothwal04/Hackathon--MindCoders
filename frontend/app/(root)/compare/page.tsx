@@ -4,7 +4,7 @@ import { ArrowLeft } from "lucide-react"
 
 export default function ComparePage() {
   return (
-    <div className="container mx-auto px-8 py-12">
+    <div className="container mx-auto px-12 py-12">
       <Link href="/properties" className="inline-flex items-center text-blue-600 font-medium mb-8 hover:underline">
         <ArrowLeft className="h-4 w-4 mr-2" />
         Back to Properties

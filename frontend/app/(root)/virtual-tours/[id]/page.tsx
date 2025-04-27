@@ -45,7 +45,7 @@ const getTourData = (id: string) => {
     tourTypes: ["VR", "3D Walkthrough", id === "3" ? "AR Experience" : null].filter(Boolean),
     availableDate: "2023-08-15",
     agent: {
-      name: "Ashutosh Chinal",
+      name: "Ashutosh",
       phone: "789-823-4671",
       email: "alex@homematch.com",
       image: "/placeholder.svg?height=100&width=100",
@@ -57,7 +57,7 @@ export default function VirtualTourPage({ params }: VirtualTourPageProps) {
   const tour = getTourData(params.id)
 
   return (
-    <div className="container mx-auto px-8 py-8">
+    <div className="container mx-auto px-12 py-8">
       <div className="mb-6">
         <Link href="/virtual-tours" className="flex items-center text-blue-600 hover:text-blue-800 mb-4">
           <ArrowLeft className="h-4 w-4 mr-1" />
@@ -274,7 +274,7 @@ export default function VirtualTourPage({ params }: VirtualTourPageProps) {
                 </div>
                 <div>
                   <h3 className="font-medium">{tour.agent.name}</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Aand Developer</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">All Developer</p>
                 </div>
               </div>
 

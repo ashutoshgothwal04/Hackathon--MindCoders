@@ -11,12 +11,12 @@ export default function BlogPost() {
     {blogPosts.map((post) => (
       <Card
         key={post.id}
-        className="overflow-hidden border-0 rounded-2xl shadow-sm hover:shadow-md transition-shadow"
+        className="overflow-hidden border-0 rounded-2xl dark:bg-bg-color shadow-sm hover:shadow-md transition-shadow"
       >
         <div className="relative h-48">
           <Image src={post.image || "/placeholder.svg"} alt={post.title} fill className="object-cover" />
         </div>
-        <CardContent className="p-6">
+        <CardContent className="p-6 dark:bg-bg-color">
           <div className="flex items-center mb-3">
             <span className="bg-gray-100 text-gray-700 text-xs px-3 py-1 rounded-full font-medium">
               {post.category}
@@ -28,7 +28,7 @@ export default function BlogPost() {
             </span>
           </div>
           <h3 className="text-xl font-bold mb-3">{post.title}</h3>
-          <p className="text-gray-600 mb-4 line-clamp-3">{post.excerpt}</p>
+          <p className="text-gray-600 mb-4 dark:text-gray-400 line-clamp-3">{post.excerpt}</p>
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <div className="w-8 h-8 rounded-full bg-gray-200 mr-2 flex items-center justify-center">
