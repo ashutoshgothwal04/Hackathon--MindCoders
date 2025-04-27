@@ -1,40 +1,36 @@
 import jwt from "jsonwebtoken";
-import {User} from  "../models/user.models.js";
+import { User } from "../models/user.models.js";
 
-export const verifyJWT = async (req, res , next) => {
-    
+export const verifyJWT = async (req, res, next) => {
     try {
-        const token = req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ", "")
+        const token = req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ", "");
         
-        console.log("token:", token);
-
         if (!token) {
             return res.status(401).json({
                 success: false,
-                msg: "Unauthorized request",
-            })
+                message: "Unauthorized request - No token provided",
+            });
         }
     
-        const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
+        const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
     
-        const user = await User.findById(decodedToken?._id).select("-password -refreshToken")
-    
+        const user = await User.findById(decodedToken?._id).select("-password -refreshToken");
         
         if (!user) {
             return res.status(401).json({
                 success: false,
-                msg: "Invalid Access Token",
-            })
+                message: "Invalid Access Token - User not found",
+            });
         }
     
         req.user = user;
-        next()
-    }
-    catch (error) {
+        next();
+    } catch (error) {
+        console.error("JWT Verification Error:", error.message);
         return res.status(401).json({
             success: false,
-            msg: "Invalid access token",
-        })
+            message: "Invalid access token",
+            error: process.env.NODE_ENV === "development" ? error.message : undefined
+        });
     }
-    
 };

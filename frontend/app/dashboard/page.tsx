@@ -3,11 +3,12 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Heart, Clock, MessageSquare, Bell, Home, Settings, FileCheck, CreditCard, LogOut, LucideIcon } from "lucide-react"
+import { Heart, Clock, MessageSquare, Bell, Home, Settings, FileCheck, CreditCard, LogOut, LucideIcon, User } from "lucide-react"
 import Image from "next/image"
 import { useAuth } from "@/context/AuthContext"
 import { useRouter } from "next/navigation"
 import React from "react";
+import Link from "next/link";
 
 // --- Data Definitions ---
 
@@ -79,15 +80,6 @@ interface TabData {
 export default function DashboardPage() {
   const { logout, user } = useAuth();
   const router = useRouter();
-
-  const handleLogout = async () => {
-    try {
-      await logout();
-      router.push("/login");
-    } catch (error) {
-      console.error("Logout failed:", error);
-    }
-  };
 
   // --- Mock Data ---
 
@@ -200,14 +192,6 @@ export default function DashboardPage() {
           <Button className="bg-blue-600 hover:bg-blue-700 rounded-xl">
             <Settings className="h-5 w-5 mr-2" />
             Settings
-          </Button>
-          <Button
-            variant="outline"
-            className="rounded-xl text-red-600 border-red-600 hover:bg-red-50"
-            onClick={handleLogout}
-          >
-            <LogOut className="h-5 w-5 mr-2" />
-            Logout
           </Button>
         </div>
       </div>

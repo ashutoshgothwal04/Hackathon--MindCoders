@@ -33,8 +33,6 @@ npm i --legacy-peer-deps
 3. Create `.env.local` file with the following keys:
 ```env
 NEXT_PUBLIC_API_URL=http://localhost:5000/api/v1
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_Y2FwYWJsZS1hYXJkdmFyay0zMi5jbGVyay5hY2NvdW50cy5kZXYk
-CLERK_SECRET_KEY=sk_test_bRawmk2nhx0MsFCIE4WsEG7Ef0Q1lp4myyrw0WGGwS
 ```
 
 ### Backend Setup
@@ -57,7 +55,7 @@ FRONTEND_URL=http://localhost:3000
 PORT=5000
 ```
 
-4. Start the backend server:
+4. Start the backend and frontned server:
 ```bash
 npm run dev
 ```
@@ -72,19 +70,19 @@ Nestify eliminates the broker by connecting **house owners and seekers directly*
 
 ## 🛠️ Tech Stack
 
-| Layer          | Technology          |
-| -------------- | ------------------- |
+| Layer          | Technology               |
+| -------------- | -------------------      |
 | Frontend       | Next.js 13+ (App Router) |
-| Backend        | Node.js, Express.js |
-| Database       | MongoDB, Cloudinary |
-| Authentication | JWT, Clerk         |
-| Hosting        | Vercel              |
+| Backend        | Node.js, Express.js      |
+| Database       | MongoDB, Cloudinary      |
+| Authentication | JWT, Auth                |
+| Hosting        | Vercel                   |
 
 ## 🖼️ Features
 
 * 🔍 **Search Listings** – Users can search rest houses by location, price, and date.
 * 🏡 **Post Your Rest House** – Owners can easily list their property with images and details.
-* 🧑‍💻 **Login & Authentication** – Secure login system with JWT and Clerk.
+* 🧑‍💻 **Login & Authentication** – Secure login system with JWT and auth service.
 * 💬 **Direct Chat / Contact** – Owners and renters can communicate directly.
 * 📷 **Image Upload** – Upload multiple images for each rest house using Cloudinary.
 * 🗺️ **Map Integration** – Locate rest houses on a map.
