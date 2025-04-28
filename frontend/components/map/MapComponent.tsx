@@ -67,6 +67,7 @@ interface SearchResult {
   lon: string;
   display_name: string;
   type: string;
+  place_id: number;
 }
 
 interface NearbyPlace {
@@ -75,19 +76,21 @@ interface NearbyPlace {
   name: string;
   type: string;
   property?: Property;
+  isSearchResult: boolean;
 }
 
 // Create a separate component for the search control that uses the map context
 const SearchControlComponent = ({ 
   onLocationSelect,
-  onNearbyPlacesChange 
+  onNearbyPlacesChange,
+  nearbyPlaces
 }: { 
   onLocationSelect?: MapComponentProps['onLocationSelect'];
   onNearbyPlacesChange: (places: NearbyPlace[]) => void;
+  nearbyPlaces: NearbyPlace[];
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearching, setIsSearching] = useState(false);
-  const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   
   // Import useMap directly in the component
   const { useMap } = require('react-leaflet');
@@ -104,7 +107,7 @@ const SearchControlComponent = ({
       });
 
       // Generate random points around the main location
-      const places = Array.from({ length: 10 }, (_, index) => {
+      const propertyMarkers = Array.from({ length: 10 }, (_, index) => {
         // Generate random offset between -0.01 and 0.01 degrees (roughly 1km)
         const latOffset = (Math.random() - 0.5) * 0.02;
         const lonOffset = (Math.random() - 0.5) * 0.02;
@@ -117,11 +120,14 @@ const SearchControlComponent = ({
           lng: lon + lonOffset,
           name: `Property ${index + 1}`,
           type: 'property',
-          property: randomProperty
+          property: randomProperty,
+          isSearchResult: false
         };
       });
 
-      onNearbyPlacesChange(places);
+      // Combine existing search result markers with new property markers
+      const existingSearchResults = nearbyPlaces.filter(place => place.isSearchResult);
+      onNearbyPlacesChange([...existingSearchResults, ...propertyMarkers]);
     } catch (error) {
       console.error('Error generating random points:', error);
       onNearbyPlacesChange([]);
@@ -132,8 +138,6 @@ const SearchControlComponent = ({
     if (!searchQuery.trim()) return;
     
     setIsSearching(true);
-    setSearchResults([]);
-    onNearbyPlacesChange([]);
     
     try {
       const response = await fetch(
@@ -146,15 +150,32 @@ const SearchControlComponent = ({
         return;
       }
       
-      setSearchResults(data);
-      const { lat, lon, display_name } = data[0];
-      const location = { lat: parseFloat(lat), lng: parseFloat(lon), address: display_name };
+      // Create markers for all search results
+      const searchMarkers = data.map(result => ({
+        lat: parseFloat(result.lat),
+        lng: parseFloat(result.lon),
+        name: result.display_name,
+        type: 'search_result',
+        isSearchResult: true
+      }));
+
+      // Update nearby places with search results
+      onNearbyPlacesChange(searchMarkers);
+
+      // Center map on the first result
+      const firstResult = data[0];
+      const location = { 
+        lat: parseFloat(firstResult.lat), 
+        lng: parseFloat(firstResult.lon), 
+        address: firstResult.display_name 
+      };
       
       map.setView([location.lat, location.lng], 13);
       if (onLocationSelect) {
         onLocationSelect(location);
       }
       
+      // Fetch property markers around the first location
       await fetchNearbyPlaces(location.lat, location.lng);
     } catch (error) {
       console.error('Error searching location:', error);
@@ -172,33 +193,15 @@ const SearchControlComponent = ({
         onChange={(e) => setSearchQuery(e.target.value)}
         placeholder="Search location..."
         className={styles.searchInput}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            handleSearch();
+          }
+        }}
       />
       <button onClick={handleSearch} className={styles.searchButton} disabled={isSearching}>
         {isSearching ? 'Searching...' : 'Search'}
       </button>
-      {searchResults.length > 0 && (
-        <div className={styles.searchResults}>
-          {searchResults.map((result) => (
-            <div
-              key={result.place_id}
-              className={styles.searchResult}
-              onClick={() => {
-                const location = { 
-                  lat: parseFloat(result.lat), 
-                  lng: parseFloat(result.lon), 
-                  address: result.display_name 
-                };
-                map.setView([location.lat, location.lng], 13);
-                if (onLocationSelect) {
-                  onLocationSelect(location);
-                }
-              }}
-            >
-              {result.display_name}
-            </div>
-          ))}
-        </div>
-      )}
     </div>
   );
 };
@@ -312,11 +315,23 @@ export default function MapComponent({ onLocationSelect, initialLocation, height
                 }
               }
             }}
-          />
+          >
+            <Popup>
+              <div>
+                <p className="font-medium">{place.name}</p>
+                {place.isSearchResult ? (
+                  <p className="text-sm text-gray-500">Search result</p>
+                ) : (
+                  <p className="text-sm text-gray-500">Property</p>
+                )}
+              </div>
+            </Popup>
+          </Marker>
         ))}
         <SearchControl 
           onLocationSelect={handleLocationUpdate} 
           onNearbyPlacesChange={setNearbyPlaces}
+          nearbyPlaces={nearbyPlaces}
         />
       </MapContainer>
 
