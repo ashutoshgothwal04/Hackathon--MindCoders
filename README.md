@@ -35,6 +35,7 @@ npm i --legacy-peer-deps
 NEXT_PUBLIC_API_URL=http://localhost:5000/api/v1
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_Y2FwYWJsZS1hYXJkdmFyay0zMi5jbGVyay5hY2NvdW50cy5kZXYk
 CLERK_SECRET_KEY=sk_test_bRawmk2nhx0MsFCIE4WsEG7Ef0Q1lp4myyrw0WGGwS
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
 ```
 
 ### Backend Setup
@@ -45,7 +46,7 @@ cd backend
 
 2. Install dependencies:
 ```bash
-npm install
+npm install stripe
 ```
 
 3. Create `.env` file with the following keys:
@@ -55,6 +56,8 @@ ACCESS_TOKEN_SECRET=<generate_secure_random_string>
 REFRESH_TOKEN_SECRET=<generate_secure_random_string>
 FRONTEND_URL=http://localhost:3000
 PORT=5000
+STRIPE_SECRET_KEY=your_stripe_secret_key
+STRIPE_WEBHOOK_SECRET=your_stripe_webhook_secret
 ```
 
 4. Start the backend server:
@@ -212,3 +215,84 @@ backend/
 * Implement real-time chat functionality
 * Add property reviews and ratings
 * Implement AI-based property recommendations
+
+## Payment Integration with Stripe
+
+This project includes payment functionality using Stripe for both card and UPI payments.
+
+### Backend Setup
+
+1. Install the required dependencies:
+   ```bash
+   cd backend
+   npm install stripe
+   ```
+
+2. Create a `.env` file in the backend directory with the following variables:
+   ```
+   MONGO_URI=your_mongodb_uri
+   ACCESS_TOKEN_SECRET=your_access_token_secret
+   REFRESH_TOKEN_SECRET=your_refresh_token_secret
+   STRIPE_SECRET_KEY=your_stripe_secret_key
+   STRIPE_WEBHOOK_SECRET=your_stripe_webhook_secret
+   ```
+
+3. Get your Stripe API keys:
+   - Sign up for a Stripe account at https://stripe.com
+   - Get your API keys from the Stripe Dashboard
+   - For testing, use the test keys
+
+4. Set up Stripe webhooks:
+   - In your Stripe Dashboard, go to Developers > Webhooks
+   - Add an endpoint: `https://your-domain.com/api/v1/payments/webhook`
+   - Select events to listen for: `payment_intent.succeeded` and `payment_intent.payment_failed`
+   - Get the webhook signing secret and add it to your `.env` file
+
+### Frontend Setup
+
+1. Install the required dependencies:
+   ```bash
+   cd frontend
+   npm install @stripe/stripe-js @stripe/react-stripe-js
+   ```
+
+2. Create a `.env.local` file in the frontend directory with the following variables:
+   ```
+   NEXT_PUBLIC_API_URL=http://localhost:5000
+   NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
+   ```
+
+3. Get your Stripe publishable key from the Stripe Dashboard and add it to the `.env.local` file.
+
+### Testing Payments
+
+1. For card payments, use Stripe's test card numbers:
+   - Success: 4242 4242 4242 4242
+   - Decline: 4000 0000 0000 0002
+   - Expiry: Any future date
+   - CVC: Any 3 digits
+   - ZIP: Any 5 digits
+
+2. For UPI testing, use the test mode in your Stripe Dashboard.
+
+### Payment Flow
+
+1. **Card Payments**:
+   - User enters amount and card details
+   - Backend creates a payment intent
+   - Frontend confirms the payment with Stripe
+   - Webhook updates the payment status
+
+2. **UPI Payments**:
+   - User enters amount
+   - Backend creates a payment link
+   - User is redirected to the payment link
+   - Webhook updates the payment status
+
+### Payment History
+
+Users can view their payment history at `/payment/history`.
+
+## Other Project Features
+
+[Add other project features here]

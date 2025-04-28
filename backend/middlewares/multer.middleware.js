@@ -7,11 +7,7 @@ const storage = multer.diskStorage({
     cb(null, "public/temp");
   },
   filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(
-      null,
-      file.fieldname + "-" + uniqueSuffix + path.extname(file.originalname)
-    );
+    cb(null, file.fieldname + "-" + Date.now() + path.extname(file.originalname));
   },
 });
 
@@ -34,7 +30,12 @@ const fileFilter = (req, file, cb) => {
 // Configure multer
 export const upload = multer({
   storage: storage,
-  fileFilter: fileFilter,
+  fileFilter: function (req, file, cb) {
+    if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
+      return cb(new Error("Please upload an image file"), false);
+    }
+    cb(null, true);
+  },
   limits: {
     fileSize: 5 * 1024 * 1024, // 5MB limit
   },

@@ -11,13 +11,24 @@ import morgan from "morgan";
 import userRoutes from "./routes/user.routes.js";
 import propertyRoutes from "./routes/property.routes.js";
 import messageRoutes from "./routes/message.routes.js";
+import paymentRoutes from "./routes/payment.routes.js";
 import { verifyJWT } from "./middlewares/JWT_Verify.js";
 
 // Load environment variables
 dotenv.config();
 
 // Validate required environment variables
-const requiredEnvVars = ['MONGO_URI', 'ACCESS_TOKEN_SECRET', 'REFRESH_TOKEN_SECRET'];
+const requiredEnvVars = [
+  'MONGO_URI', 
+  'ACCESS_TOKEN_SECRET', 
+  'REFRESH_TOKEN_SECRET'
+];
+
+// Check for Stripe keys in production
+if (process.env.NODE_ENV === 'production') {
+  requiredEnvVars.push('STRIPE_SECRET_KEY', 'STRIPE_WEBHOOK_SECRET');
+}
+
 const missingEnvVars = requiredEnvVars.filter(envVar => !process.env[envVar]);
 
 if (missingEnvVars.length > 0) {
@@ -37,7 +48,7 @@ app.use(
     origin: "http://localhost:3000",
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     credentials: true,
-    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "Accept"],
+    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "Accept", "Stripe-Signature"],
     exposedHeaders: ["Set-Cookie"],
     preflightContinue: false,
     optionsSuccessStatus: 204
@@ -59,10 +70,14 @@ app.use(express.json({ limit: "10kb" }));
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true, limit: "10kb" }));
 
+// Special route for Stripe webhooks - needs raw body
+app.post('/api/v1/payments/webhook', express.raw({ type: 'application/json' }), paymentRoutes);
+
 // Routes
 app.use("/api/v1/users", userRoutes);
-app.use("/api/v1/properties", verifyJWT, propertyRoutes );
-app.use("/api/v1/messages", verifyJWT,  messageRoutes);
+app.use("/api/v1/properties", verifyJWT, propertyRoutes);
+app.use("/api/v1/messages", verifyJWT, messageRoutes);
+app.use("/api/v1/payments", paymentRoutes);
 
 // Health Check
 app.get("/api/health", (req, res) => {
@@ -95,7 +110,6 @@ app.use((err, req, res, next) => {
   });
 });
 
-// const PORT = process.env.PORT || 5000;
 const PORT = process.env.PORT || 5000;
 const server = app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

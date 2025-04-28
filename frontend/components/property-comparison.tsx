@@ -99,6 +99,7 @@ export function PropertyComparison() {
                     <button
                       onClick={() => removeProperty(property.id)}
                       className="absolute -top-2 -right-2 z-10 dark:text-bg-color bg-gray-100 rounded-full p-1 hover:bg-gray-200 transition-colors"
+                      title="Remove property from comparison"
                     >
                       <X className="h-4 w-4" />
                     </button>
