@@ -15,22 +15,26 @@
 
 ## 🚀 Project Overview
 
-**Nestify** is a platform where users can **search**, **list**, and **rent rest houses** without any **middlemen or brokers**. It aims to create a transparent, community-driven network for short and long-term stays, ensuring trust, affordability, and ease of use.
+NestQuest is a platform where users can **search**, **list**, and **rent rest houses** without any **middlemen or brokers**. It aims to create a transparent, community-driven network for short and long-term stays, ensuring trust, affordability, and ease of use.
 
 ## **🖊️ Installation**
 
 ### Frontend Setup
+
 1. Navigate to the frontend directory:
+
 ```bash
 cd frontend
 ```
 
 2. Install dependencies:
+
 ```bash
 npm i --legacy-peer-deps
 ```
 
 3. Create `.env.local` file with the following keys:
+
 ```env
 NEXT_PUBLIC_API_URL=http://localhost:5000/api/v1
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_Y2FwYWJsZS1hYXJkdmFyay0zMi5jbGVyay5hY2NvdW50cy5kZXYk
@@ -38,17 +42,21 @@ CLERK_SECRET_KEY=sk_test_bRawmk2nhx0MsFCIE4WsEG7Ef0Q1lp4myyrw0WGGwS
 ```
 
 ### Backend Setup
+
 1. Navigate to the backend directory:
+
 ```bash
 cd backend
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Create `.env` file with the following keys:
+
 ```env
 MONGO_URI=mongodb://localhost:27017/mindcoders
 ACCESS_TOKEN_SECRET=<generate_secure_random_string>
@@ -58,6 +66,7 @@ PORT=5000
 ```
 
 4. Start the backend server:
+
 ```bash
 npm run dev
 ```
@@ -72,13 +81,13 @@ Nestify eliminates the broker by connecting **house owners and seekers directly*
 
 ## 🛠️ Tech Stack
 
-| Layer          | Technology          |
-| -------------- | ------------------- |
+| Layer          | Technology               |
+| -------------- | ------------------------ |
 | Frontend       | Next.js 13+ (App Router) |
-| Backend        | Node.js, Express.js |
-| Database       | MongoDB, Cloudinary |
-| Authentication | JWT, Clerk         |
-| Hosting        | Vercel              |
+| Backend        | Node.js, Express.js      |
+| Database       | MongoDB, Cloudinary      |
+| Authentication | JWT, Clerk               |
+| Hosting        | Vercel                   |
 
 ## 🖼️ Features
 
@@ -93,6 +102,7 @@ Nestify eliminates the broker by connecting **house owners and seekers directly*
 ## 📦 Project Architecture
 
 ### Frontend Architecture
+
 - Next.js 13+ with App Router
 - Client-side components marked with "use client" directive
 - Server components for static content and metadata
@@ -100,6 +110,7 @@ Nestify eliminates the broker by connecting **house owners and seekers directly*
 - Context API for state management
 
 ### Backend Architecture
+
 - Express.js with CORS enabled
 - MongoDB for database
 - JWT for authentication
@@ -109,16 +120,17 @@ Nestify eliminates the broker by connecting **house owners and seekers directly*
 ## 🔐 Authentication Flow
 
 1. User Registration:
+
    - Frontend sends registration data to `/api/v1/users/register`
    - Backend validates and creates user
    - JWT tokens are generated and sent in cookies
-
 2. User Login:
+
    - Frontend sends credentials to `/api/v1/users/login`
    - Backend validates and returns JWT tokens
    - Tokens are stored in secure HTTP-only cookies
-
 3. Protected Routes:
+
    - Frontend includes JWT in Authorization header
    - Backend middleware validates token
    - Access granted/denied based on token validity
@@ -126,27 +138,31 @@ Nestify eliminates the broker by connecting **house owners and seekers directly*
 ## 🛣️ API Routes Documentation
 
 ### Backend Routes
+
 #### User Routes
-| Method | Endpoint | Description | Authentication Required |
-|--------|----------|-------------|------------------------|
-| POST | `/api/v1/users/register` | Register a new user | No |
-| POST | `/api/v1/users/login` | Login user | No |
-| POST | `/api/v1/users/logout` | Logout user | Yes |
-| POST | `/api/v1/users/refresh-token` | Refresh access token | No |
-| GET | `/api/v1/users/current-user` | Get current user details | Yes |
+
+| Method | Endpoint                        | Description              | Authentication Required |
+| ------ | ------------------------------- | ------------------------ | ----------------------- |
+| POST   | `/api/v1/users/register`      | Register a new user      | No                      |
+| POST   | `/api/v1/users/login`         | Login user               | No                      |
+| POST   | `/api/v1/users/logout`        | Logout user              | Yes                     |
+| POST   | `/api/v1/users/refresh-token` | Refresh access token     | No                      |
+| GET    | `/api/v1/users/current-user`  | Get current user details | Yes                     |
 
 #### Property Routes
-| Method | Endpoint | Description | Authentication Required |
-|--------|----------|-------------|------------------------|
-| POST | `/api/v1/properties/` | Create new property listing | Yes |
-| GET | `/api/v1/properties/` | Get all properties with filters | No |
-| GET | `/api/v1/properties/:id` | Get property by ID | No |
-| PATCH | `/api/v1/properties/:id` | Update property details | Yes |
-| DELETE | `/api/v1/properties/:id` | Delete property | Yes |
+
+| Method | Endpoint                   | Description                     | Authentication Required |
+| ------ | -------------------------- | ------------------------------- | ----------------------- |
+| POST   | `/api/v1/properties/`    | Create new property listing     | Yes                     |
+| GET    | `/api/v1/properties/`    | Get all properties with filters | No                      |
+| GET    | `/api/v1/properties/:id` | Get property by ID              | No                      |
+| PATCH  | `/api/v1/properties/:id` | Update property details         | Yes                     |
+| DELETE | `/api/v1/properties/:id` | Delete property                 | Yes                     |
 
 ## 📁 Project Folder Structure
 
 ### Frontend Structure
+
 ```
 frontend/
 ├── app/                     # Next.js App Router
@@ -171,6 +187,7 @@ frontend/
 ```
 
 ### Backend Structure
+
 ```
 backend/
 ├── routes/                # API Routes
