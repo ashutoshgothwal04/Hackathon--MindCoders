@@ -27,12 +27,14 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <AuthProvider>
-          <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-            <div className="flex flex-col min-h-screen">
-              <main className="flex-grow">{children}</main>
-            </div>
-          </ThemeProvider>
-          <Toaster position="top-right" />
+          <SubscriptionProvider>
+            <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+              <div className="flex flex-col min-h-screen">
+                <main className="flex-grow">{children}</main>
+              </div>
+            </ThemeProvider>
+            <Toaster position="top-right" />
+          </SubscriptionProvider>
         </AuthProvider>
       </body>
     </html>
