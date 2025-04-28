@@ -8,7 +8,7 @@ export default function Header() {
               {/* Header */}
       <div className="text-center max-w-3xl mx-auto mb-16">
         <h1 className="text-4xl md:text-5xl font-bold mb-6">NestQuest Blog</h1>
-        <p className="text-xl text-gray-600">
+        <p className="text-xl dark:text-gray-400 text-gray-600">
           Insights, tips, and trends to help you navigate the rental market and make your house feel like home
         </p>
       </div>
@@ -27,7 +27,7 @@ export default function Header() {
           {categories.map((category, index) => (
             <button
               key={index}
-              className={`px-4 py-2 rounded-full text-sm font-medium ${
+              className={`px-4 py-1 rounded-full text-sm font-medium ${
                 index === 0 ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors"
               }`}
             >

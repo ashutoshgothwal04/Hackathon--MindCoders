@@ -5,7 +5,7 @@ import FAQ from "@/components/Virtual-Tour/FAQ";
 
 export default function VirtualToursPage() {
   return (
-    <div className="container mx-auto px-8 py-8">
+    <div className="container mx-auto px-12 py-8">
       <Hero />
       {/* Featured Virtual Tours */}
       <Featured />

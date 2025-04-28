@@ -8,7 +8,7 @@ import PricePrediction from "@/components/AI-Features/PricePrediction"
 
 export default function AIFeaturesPage() {
   return (
-    <div className="container mx-auto px-8 py-8">
+    <div className="container mx-auto px-12 py-8">
       {/* Hero Section */}
       <Hero/> 
       {/* AI Features Overview */}

@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Search } from "@/components/search"
 import FilterSection from "@/components/Properties/FilterSection"
 import PropertySection from "@/components/Properties/PropertySection"
-import { BarChart2, X } from "lucide-react"
+import { BarChart2, X, Crown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
@@ -23,7 +23,7 @@ export default function PropertiesPage() {
     setComparingProperties([])
   }
   return (
-    <div className="container mx-auto px-8 py-8">
+    <div className="container mx-auto px-12 py-8">
       {comparingProperties.length > 0 && (
         <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-bg-color shadow-lg z-50 p-4">
           <div className="container mx-auto flex items-center justify-between">
@@ -46,7 +46,13 @@ export default function PropertiesPage() {
         </div>
       )}
       
-      <h1 className="text-3xl font-bold mb-8">Find Your Perfect Home</h1>
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-bold">Find Your Perfect Home</h1>
+        <Button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 shadow-lg transition-all duration-300">
+          <Crown className="h-4 w-4 mr-2" />
+          <Link href="/subscription" className="flex items-center">Upgrade to Premium</Link>
+        </Button>
+      </div>
       {/* Search Component */}
       <div className="mb-20">
         <Search />

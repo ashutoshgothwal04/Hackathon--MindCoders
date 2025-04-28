@@ -18,7 +18,7 @@ export default function Featured() {
             priority
           />
         </div>
-        <CardContent className="p-8 lg:p-12 flex flex-col justify-center">
+        <CardContent className="p-8 lg:p-12 flex flex-col dark:bg-bg-color justify-center">
           <div className="flex items-center mb-4">
             <span className="bg-blue-100 text-blue-700 text-xs px-3 py-1 rounded-full font-medium">
               {featuredPost.category}

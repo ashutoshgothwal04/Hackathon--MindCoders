@@ -164,15 +164,15 @@ export default function DashboardPage() {
         </div>
       </div>
       <CardContent className="p-6">
-        <h3 className="font-semibold text-lg mb-2 group-hover:text-blue-600 transition-colors">
+        <h3 className="font-semibold text-lg mb-2 transition-colors">
           {property.title}
         </h3>
-        <p className="text-gray-500 mb-2 flex items-center">
+        <p className="text-gray-500 dark:text-gray-400 mb-2 flex items-center">
           <Home className="h-4 w-4 mr-1 flex-shrink-0" />
           {property.location}
         </p>
         <p className="text-xl font-bold text-blue-600 mb-4">${property.price}/mo</p>
-        <div className="flex justify-between text-sm text-gray-600 mb-6">
+        <div className="flex justify-between text-sm dark:text-gray-400 text-gray-600 mb-6">
           <span>{property.beds} beds</span>
           <span>{property.baths} baths</span>
           <span>{property.sqft} sq ft</span>
@@ -185,19 +185,19 @@ export default function DashboardPage() {
   // --- Render ---
 
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto px-12 py-12">
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12">
         <div>
           <h1 className="text-3xl md:text-4xl font-bold mb-2">Welcome back, {user?.fullName}</h1>
-          <p className="text-gray-600">Manage your rental journey and preferences</p>
+          <p className="text-gray-600 dark:text-gray-400">Manage your rental journey and preferences</p>
         </div>
         <div className="flex space-x-4 mt-4 md:mt-0">
           <Button variant="outline" className="rounded-xl">
             <Bell className="h-5 w-5 mr-2" />
             Notifications
           </Button>
-          <Button className="bg-blue-600 hover:bg-blue-700 rounded-xl">
+          <Button className="bg-blue-600 dark:text-white hover:bg-blue-700 rounded-xl">
             <Settings className="h-5 w-5 mr-2" />
             Settings
           </Button>
@@ -219,7 +219,7 @@ export default function DashboardPage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-600 mb-1">{title}</p>
+                  <p className="text-gray-600 dark:text-gray-400 mb-1">{title}</p>
                   <p className={`text-3xl font-bold ${valueColor || ''}`}>{value}</p>
                 </div>
                 <div className={`${iconBgColor} p-3 rounded-full`}>
@@ -249,7 +249,7 @@ export default function DashboardPage() {
               Update Preferences
             </Button>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {recommendationsData.map((property) => (
               <PropertyCard key={property.id} property={property} />
             ))}
@@ -297,7 +297,7 @@ export default function DashboardPage() {
                           </span>
                         </div>
                       </div>
-                      <p className="text-gray-500 mb-4 flex items-center">
+                      <p className="text-gray-500 dark:text-gray-400 mb-4 flex items-center">
                         <Home className="h-4 w-4 mr-1 flex-shrink-0" />
                         {tour.location}
                       </p>
@@ -315,7 +315,7 @@ export default function DashboardPage() {
                       <div className="flex flex-col sm:flex-row gap-3">
                         <Button variant="outline" className="rounded-xl">Reschedule</Button>
                         <Button variant="outline" className="rounded-xl">Cancel</Button>
-                        <Button className="bg-blue-600 hover:bg-blue-700 rounded-xl">View Property</Button>
+                        <Button className="bg-blue-600 dark:text-white hover:bg-blue-700 rounded-xl">View Property</Button>
                       </div>
                     </div>
                   </div>
@@ -363,21 +363,21 @@ export default function DashboardPage() {
                     </div>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                    <div className="bg-gray-50 p-4 rounded-xl">
+                    <div className="bg-gray-50 dark:bg-bg-color p-4 rounded-xl">
                       <p className="text-gray-500 text-sm mb-1">Submitted On</p>
                       <p className="font-medium">{app.submittedOn.toLocaleDateString()}</p>
                     </div>
-                    <div className="bg-gray-50 p-4 rounded-xl">
+                    <div className="bg-gray-50 dark:bg-bg-color p-4 rounded-xl">
                       <p className="text-gray-500 text-sm mb-1">Monthly Rent</p>
                       <p className="font-medium">${app.monthlyRent}</p>
                     </div>
-                    <div className="bg-gray-50 p-4 rounded-xl">
+                    <div className="bg-gray-50 dark:bg-bg-color p-4 rounded-xl">
                       <p className="text-gray-500 text-sm mb-1">Move-in Date</p>
                       <p className="font-medium">{app.moveInDate.toLocaleDateString()}</p>
                     </div>
                   </div>
                   <div className="flex flex-col sm:flex-row gap-3">
-                    <Button className="bg-blue-600 hover:bg-blue-700 rounded-xl flex items-center">
+                    <Button className="bg-blue-600 dark:text-white hover:bg-blue-700 rounded-xl flex items-center">
                       <FileCheck className="h-5 w-5 mr-2" />
                       View Application
                     </Button>
@@ -396,18 +396,18 @@ export default function DashboardPage() {
       </Tabs>
 
       {/* Saved Searches Section */}
-      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+      <div className="bg-white rounded-2xl dark:bg-bg-color dark:border-bg-color shadow-sm border border-gray-100 p-8">
         <h2 className="text-2xl font-bold mb-6">Saved Searches</h2>
         <div className="space-y-4">
           {savedSearchesData.map((search) => (
             <div
               key={search.id}
-              className="border border-gray-100 rounded-xl p-4 hover:border-blue-200 hover:bg-blue-50/30 transition-colors"
+              className="border border-gray-100 rounded-xl p-4 dark:border-bg-prime dark:bg-bg-prime hover:border-blue-200 hover:bg-blue-50/30 transition-colors"
             >
               <div className="flex flex-col md:flex-row justify-between">
                 <div>
                   <h3 className="font-semibold text-lg mb-1">{search.title}</h3>
-                  <p className="text-gray-600 mb-3">{search.description}</p>
+                  <p className="text-gray-600 dark:text-gray-400 mb-3">{search.description}</p>
                   <div className="flex flex-wrap gap-2">
                     <span className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-full">
                       {search.propertyCount} properties
@@ -419,7 +419,7 @@ export default function DashboardPage() {
                 </div>
                 <div className="flex items-center mt-4 md:mt-0 space-x-3">
                   <Button variant="outline" size="sm" className="rounded-xl">Edit</Button>
-                  <Button size="sm" className="bg-blue-600 hover:bg-blue-700 rounded-xl">View Results</Button>
+                  <Button size="sm" className="bg-blue-600 dark:text-white hover:bg-blue-700 rounded-xl">View Results</Button>
                 </div>
               </div>
             </div>
